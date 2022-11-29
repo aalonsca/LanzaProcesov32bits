@@ -1,0 +1,174 @@
+#-------------------------------
+#Variables de entorno
+#-------------------------------
+GC_LANG="English_UnitedStates.Windows-1252@Default";export GC_LANG
+
+DIR_EJEC="/amxusers2/test/crm/chicrm4/CRM/LanzaProceso_v32bits";export DIR_EJEC
+LOG_EJEC=${DIR_EJEC}"/log";export LOG_EJEC
+DIR_CLASS=${DIR_EJEC}"/classes";export DIR_CLASS
+
+
+JAVA_HOME="/usr/java/jdk1.6.0_24.32b"
+WL_HOME="/opt/weblogic1036/wlserver_10.3"
+FEATURES_DIR="/opt/weblogic1036/modules/features"
+
+WL_DOMAIN="/amxusers3/test/oms/chioms4/JEE/config/oms/WLS/OMSDomain"; export WL_DOMAIN
+#CLARIFY_DIR="/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/AmdocsCRMApplication/bin";export CLARIFY_DIR
+CLARIFY_DIR=${DIR_EJEC};export CLARIFY_DIR
+CLARIFY_ENV_DIR=${DIR_EJEC};export CLARIFY_ENV_DIR
+CLARIFYENV=${CLARIFY_DIR}"/clarify.env";export CLARIFYENV
+
+CLARIFY_JAVA_CLASSPATH=`grep "^Java_ClassPath=" $CLARIFYENV | cut -d= -f2-`;export CLARIFY_JAVA_CLASSPATH
+CLARIFY_JAVA_ARGS=`grep "^java_args=" $CLARIFYENV | cut -d= -f2-`;export CLARIFY_JAVA_ARGS
+#CBO_HOME=${HOME}"/JEE/CRMProduct/application/AmdocsCRMApplication/bin"
+CBO_HOME=${DIR_EJEC}
+
+CONF_HOME="/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/Server/configurator";export CONF_HOME
+
+PATH=$CBO_HOME:$PATH
+
+
+export CLFY_JARS_PATH=${HOME}"/JEE/CRMProduct/application/CRMDeployment/ClfyAgent/ClfyAgent.war/WEB-INF/lib"
+export CLFY_APP_INF_JARS_PATH=${HOME}"/JEE/CRMProduct/application/CRMDeployment/ClfyAgent/APP-INF/lib"
+export CLFY_APP_INF_CLASSES_PATH=${HOME}"/JEE/CRMProduct/application/CRMDeployment/ClfyAgent/APP-INF/classes"
+export ORA_JARS_PATH=${HOME}"/JEE/CRMProduct/application/AmdocsCRMApplication/lib"
+export CLFY_ASM=${DIR_EJEC}"/asm_home"
+export EXT_LIB="/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/AmdocsCRMApplication/extralibs/internal"
+export ARDIR="${WL_HOME}/server/lib"
+
+#-------------------------------
+# CLASSPATH
+#-------------------------------
+#CLASSPATH_CP=".:/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/AmdocsCRMApplication/lib/*"
+
+WEBLOGIC_CLASSPATH=${WL_HOME}"/server/lib/weblogic_sp.jar:"${FEATURES_DIR}"/weblogic.server.modules_10.3.6.0.jar"
+
+# CLASSPATH=${CLASSPATH}":"${HOME}"/JEE/CRMProduct/application/CRMDeployment/ClfyAgent/APP-INF/lib/uams_cust.jar:"${HOME}"/JEE/CRMProduct/application/AmdocsCRMApplication/lib/ojdbc6.jar"
+# CLASSPATH=${CLASSPATH}":"${HOME}"/JEE/CRMProduct/application/AmdocsCRMApplication/lib/UamsSecurityProviders.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_APP_INF_CLASSES_PATH}":"${HOME}"/JEE/CRMProduct/application/AmdocsCRMApplication/lib/AmdocsSecurityManager.jar":${ORA_JARS_PATH}"/ojdbc14.jar:"${ORA_JARS_PATH}"/orai18n.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/awsi.jar:"${CLFY_JARS_PATH}"/axis.jar:"${CLFY_JARS_PATH}"/asm7_webservices.jar:"${CLFY_APP_INF_JARS_PATH}"/ASM7UserServicesBeanSec.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/CrmCustccrm9Apps.jar:"${CLFY_JARS_PATH}"/CrmCustccrm7Apps.jar:"${CLFY_JARS_PATH}"/CrmCustccrm7Integration.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_APP_INF_JARS_PATH}"/CrmCustccrm7CoreApps.jar:"${CLFY_JARS_PATH}"/CrmphdApplication.jar:"${CLFY_JARS_PATH}"/CrmphdIntegration.jar:"${CLFY_APP_INF_JARS_PATH}"/CrmphdCore.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/AmdocsProcMgr/AmdocsProcMgrBase.jar:"${CLFY_JARS_PATH}"/../../../AmdocsCore.jar:"${CLFY_JARS_PATH}"/AmdocsAif.jar:"${CLFY_JARS_PATH}"/ClfyXvo.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/FeSdkSampleTest.jar:"${CLFY_JARS_PATH}"/FeSdkFramework.jar:"${CLFY_JARS_PATH}"/UIFCommon.jar:"${CLFY_JARS_PATH}"/UIFServer.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/jdom.jar:"${CLFY_JARS_PATH}"/xercesImpl.jar:"${CLFY_JARS_PATH}"/velocity-dep-1.4.jar:"${CLFY_JARS_PATH}"/ClfymOrder.jar:"${CLFY_JARS_PATH}"/weblogic-tags.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/ClfyBilling.jar:"${CLFY_JARS_PATH}"/ClfyBillingManager.jar:"${CLFY_JARS_PATH}"/ClfyCAC.jar:"${CLFY_JARS_PATH}"/ClfyCIM.jar:"${CLFY_JARS_PATH}"/ClfyCollection.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/ClfyCommon.jar:"${CLFY_JARS_PATH}"/ClfyDataMapIgBmAbp.jar:"${CLFY_JARS_PATH}"/ClfyDataMapIgClAbp.jar:"${CLFY_JARS_PATH}"/ClfyDataMapIgOmseAbp.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/ClfyDataMapIgSalesAbp.jar:"${CLFY_JARS_PATH}"/ClfyeRM.jar:"${CLFY_JARS_PATH}"/ClfyiAdmin.jar:"${CLFY_JARS_PATH}"/ClfyiConfig.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/ClfyiSupport.jar:"${CLFY_JARS_PATH}"/ClfyJBO.jar:"${CLFY_JARS_PATH}"/ClfyMediaController.jar:"${CLFY_JARS_PATH}"/ClfymOrder.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/ClfyQuality.jar:"${CLFY_JARS_PATH}"/ClfyRouting.jar:"${CLFY_JARS_PATH}"/ClfySales.jar:"${CLFY_JARS_PATH}"/ClfyScript.jar:"${CLFY_JARS_PATH}"/ClfyUtil.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/ClfyWebInf.jar:"${CLFY_JARS_PATH}"/ant-launcher.jar:"${CLFY_JARS_PATH}"/commons-discovery-0.2.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/commons-logging.jar:"${CLFY_JARS_PATH}"/jaxb-api.jar:"${CLFY_JARS_PATH}"/jaxb-impl.jar:"${CLFY_JARS_PATH}"/jaxb-libs.jar:"${CLFY_JARS_PATH}"/jaxb-xjc.jarjaxp-api.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/jax-qname.jar:"${CLFY_JARS_PATH}"/jaxr-api.jar:"${CLFY_JARS_PATH}"/jaxr-impl.jar:"${CLFY_JARS_PATH}"/jaxrpc.jarjdom.jar:"${CLFY_JARS_PATH}"/jolt.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/log4j-1.2.8.jar:"${CLFY_JARS_PATH}"/relaxngDatatype.jar:"${CLFY_JARS_PATH}"/saaj.jar:"${CLFY_JARS_PATH}"/sbjapi10.jar:"${CLFY_JARS_PATH}"/ssjdbc50.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/velocity-dep-1.4.jar:"${CLFY_JARS_PATH}"/weblogic-tags.jar:"${CLFY_JARS_PATH}"/wsdl4j-1.5.1.jar:"${CLFY_JARS_PATH}"/xalan.jar:"${CLFY_JARS_PATH}"/xercesImpl.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/xml-apis.jar:"${CLFY_JARS_PATH}"/xsdlib.jar:"${CLFY_JARS_PATH}"/xsltc.jar:"${CLFY_JARS_PATH}"/OMS.jar:"${CLFY_JARS_PATH}"/oms_ui_api.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/uiconnectors.jar:"${CLFY_JARS_PATH}"/../../../acfglib.jar:"${CLFY_JARS_PATH}"/../../../jaxen-1.1-beta-9.jar:"${CLFY_JARS_PATH}"/commons-codec.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/commons-fileupload.jar:"${CLFY_JARS_PATH}"/commons-io.jar:"${CLFY_JARS_PATH}"/commons-httpclient.jar:"${CLFY_JARS_PATH}"/AmdocsSvcCommon.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/AmdocsSvcCommonCrm.jar:"${CLFY_JARS_PATH}"/AmdocsCihDatatype.jar:"${CLFY_JARS_PATH}"/AmdocsCihBillingDataMap.jar:"${CLFY_JARS_PATH}"/AmdocsCihBillingServices.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/AmdocsCihCustomerServices.jar:"${CLFY_JARS_PATH}"/../../../ClfyCore.jar:"${CLFY_JARS_PATH}"/../../../ClfyIntegrationApi.jar:"${CLFY_JARS_PATH}"/ClfyWebInf.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/SimCCValidation.jar:"${WL_HOME}"/server/lib/weblogic.jar"
+# CLASSPATH=${CLASSPATH}":"${ORA_JARS_PATH}"/AmdocsSecurityManager.jar:"${CLFY_JARS_PATH}"/gcme_ccm3e_ccm7e_client_classes.jar:"${WL_HOME}"/server/lib/webservices.jar:"${WL_HOME}"/modules/org.apache.ant_1.7.1/lib/ant-all.jar"
+# CLASSPATH=${CLASSPATH}":"${WL_HOME}"/server/lib/mbeantypes/xacmlSecurityProviders.jar:"${WL_HOME}"/modules/net.sf.antcontrib_1.1.0.0_1-0b2/lib/ant-contrib.jar:"${WL_HOME}"/common/derby/lib/derbyclient.jar"
+# CLASSPATH=${CLASSPATH}":"${JAVA_HOME}"/lib/tools.jar:"${HOME}"/JEE/CRMProduct/application/AmdocsCRMApplication/extralibs/internal/gutl1jfapp_classes.jar:"${HOME}"/JEE/CRMProduct/application/AmdocsCRMApplication/extralibs/internal/gjf_classes.jar"
+# CLASSPATH=${CLASSPATH}":"${HOME}"/JEE/CRMProduct/application/AmdocsCRMApplication/extralibs/internal/gajtuq_classes.jar"
+# export CLASSPATH=${CLASSPATH}":"${WEBLOGIC_CLASSPATH}":"${ARDIR}"/xqrl.jar"
+
+
+# CLASSPATH=".:"${ORA_JARS_PATH}"/acfglib.jar:"${ORA_JARS_PATH}"/AmdocsAif.jar:"${ORA_JARS_PATH}"/AmdocsCihDatatypes.jar"
+# CLASSPATH=${CLASSPATH}":"${ORA_JARS_PATH}"/AmdocsCore.jar:"${ORA_JARS_PATH}"/AmdocsSvcCommon.jar:"${ORA_JARS_PATH}"/ClfyCore.jar"
+# CLASSPATH=${CLASSPATH}":"${ORA_JARS_PATH}"/dom4j-1.6.1.jar:"${ORA_JARS_PATH}"/gjf_client_classes.jar:"${ORA_JARS_PATH}"/jakarta-regexp-1.2.jar"
+# CLASSPATH=${CLASSPATH}":"${ORA_JARS_PATH}"/jaxen-1.1-beta-9.jar:"${ORA_JARS_PATH}"/jdom.jar"
+# CLASSPATH=${CLASSPATH}":"${ORA_JARS_PATH}"/ojdbc6.jar:"${DIR_EJEC}"/lib/AmdocsSecurityManager.jar:"${ORA_JARS_PATH}"/UamsSecurityProviders.jar"
+# CLASSPATH=${CLASSPATH}":"${ORA_JARS_PATH}"/xercesImpl.jar:"${ORA_JARS_PATH}"/xml-apis.jar:"${CLFY_JARS_PATH}"/axis.jar:"${CLFY_JARS_PATH}"/jaxrpc.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/commons-logging.jar:"${CLFY_JARS_PATH}"/commons-discovery-0.2.jar"
+# CLASSPATH=${CLASSPATH}":"${EXT_LIB}"/gutl1jfapp_classes.jar:"${EXT_LIB}"/gjf_classes.jar:"${EXT_LIB}"/gajtuq_classes.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/log4j-1.2.8.jar:"${CLFY_JARS_PATH}"/commons-codec.jar:"${CLFY_JARS_PATH}"/commons-fileupload.jar"
+# CLASSPATH=${CLASSPATH}":"${CLFY_JARS_PATH}"/commons-httpclient.jar:"${CLFY_JARS_PATH}"/commons-io.jar:"${CLFY_JARS_PATH}"/saaj.jar"
+# CLASSPATH=${CLASSPATH}":"${DIR_EJEC}"/lib/com.bea.core.common.security.i18n_1.0.0.0_6-2-0-0.jar:"${DIR_EJEC}"/lib/wls-api.jar:"${DIR_EJEC}"/lib/weblogic.jar"
+# CLASSPATH=${CLASSPATH}":"${DIR_EJEC}"/lib/wlthint3client.jar:"${DIR_EJEC}"/lib/xacmlSecurityProviders.jar:"${DIR_EJEC}"/lib/AmdocsOrderingCihDataTypes.jar"
+# CLASSPATH=${CLASSPATH}":"${DIR_EJEC}"/lib/AmdocsOrderingCihSpnLayer.jar:"${DIR_EJEC}"/lib/awsi.jar:"${DIR_EJEC}"/lib/weblogic_sp.jar"
+# CLASSPATH=${CLASSPATH}":"${DIR_EJEC}"/lib/weblogic.server.modules_10.3.6.0.jar"; export CLASSPATH
+
+CLASSPATH="/usr/java/jdk1.6.0_24.32b/lib/tools.jar"
+CLASSPATH=${CLASSPATH}":/opt/weblogic1036/wlserver_10.3/server/lib/weblogic.jar"
+CLASSPATH=${CLASSPATH}":/opt/weblogic1036/modules/com.bea.core.mbean.maker_1.5.0.0.jar"
+CLASSPATH=${CLASSPATH}":/opt/weblogic1036/modules/features/weblogic.server.modules_10.3.6.0.jar"
+CLASSPATH=${CLASSPATH}":/opt/weblogic1036/wlserver_10.3/server/lib/webservices.jar"
+CLASSPATH=${CLASSPATH}":/opt/weblogic1036/modules/org.apache.ant_1.7.1/lib/ant-all.jar"
+CLASSPATH=${CLASSPATH}":/opt/weblogic1036/modules/net.sf.antcontrib_1.1.0.0_1-0b2/lib/ant-contrib.jar"
+CLASSPATH=${CLASSPATH}":/opt/weblogic1036/wlserver_10.3/common/derby/lib/derbyclient.jar"
+CLASSPATH=${CLASSPATH}":/opt/weblogic1036/wlserver_10.3/server/lib/xqrl.jar"
+CLASSPATH=${CLASSPATH}":/opt/weblogic1036/wlserver_10.3/server/lib/webservices.jar"
+CLASSPATH=${CLASSPATH}":/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/CRMDeployment/ClfyAgent/APP-INF/lib/uams_cust.jar"
+CLASSPATH=${CLASSPATH}":/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/AmdocsCRMApplication/lib/AmdocsSecurityManager.jar"
+CLASSPATH=${CLASSPATH}":/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/AmdocsCRMApplication/lib/UamsSecurityProviders.jar"
+CLASSPATH=${CLASSPATH}":/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/AmdocsCRMApplication/lib/ojdbc6.jar"
+CLASSPATH=${CLASSPATH}":/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/AmdocsCRMApplication/lib/orai18n.jar"
+CLASSPATH=${CLASSPATH}":/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/AmdocsCRMApplication/extralibs/internal/gutl1jfapp_classes.jar"
+CLASSPATH=${CLASSPATH}":/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/AmdocsCRMApplication/extralibs/internal/gjf_classes.jar"
+CLASSPATH=${CLASSPATH}":/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/AmdocsCRMApplication/extralibs/internal/gajtuq_classes.jar"
+CLASSPATH=${CLASSPATH}":/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/CRMDeployment/ClfyAgent/ClfyAgent.war/WEB-INF/lib/log4j-1.2.8.jar"
+CLASSPATH=${CLASSPATH}":/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/CRMDeployment/ClfyAgent/ClfyAgent.war/WEB-INF/lib/axis.jar"
+CLASSPATH=${CLASSPATH}":/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/CRMDeployment/ClfyAgent/ClfyAgent.war/WEB-INF/lib/commons-codec.jar"
+CLASSPATH=${CLASSPATH}":/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/CRMDeployment/ClfyAgent/ClfyAgent.war/WEB-INF/lib/commons-discovery-0.2.jar"
+CLASSPATH=${CLASSPATH}":/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/CRMDeployment/ClfyAgent/ClfyAgent.war/WEB-INF/lib/commons-fileupload.jar"
+CLASSPATH=${CLASSPATH}":/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/CRMDeployment/ClfyAgent/ClfyAgent.war/WEB-INF/lib/commons-httpclient.jar"
+CLASSPATH=${CLASSPATH}":/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/CRMDeployment/ClfyAgent/ClfyAgent.war/WEB-INF/lib/commons-io.jar"
+CLASSPATH=${CLASSPATH}":/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/CRMDeployment/ClfyAgent/ClfyAgent.war/WEB-INF/lib/commons-logging.jar"
+CLASSPATH=${CLASSPATH}":/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/CRMDeployment/ClfyAgent/ClfyAgent.war/WEB-INF/lib/xml-apis.jar"
+CLASSPATH=${CLASSPATH}":/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/CRMDeployment/ClfyAgent/ClfyAgent.war/WEB-INF/lib/jaxrpc.jar"
+CLASSPATH=${CLASSPATH}":/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/CRMDeployment/ClfyAgent/ClfyAgent.war/WEB-INF/lib/saaj.jar";export CLASSPATH
+
+echo ${CLASSPATH}
+
+#-------------------------------
+# PATH
+#-------------------------------
+PATH=/usr/bin:/usr/ccs/bin:/usr/sbin:/opt/SUNWspro/bin:${ORACLE_HOME}/bin:${ORACLE_HOME}/lib:$PATH
+PATH=${JAVA_HOME}/bin:${PATH}
+PATH=${PATH}:${CLARIFY_DIR};export PATH
+
+#-------------------------------
+# LD_LIBRARY_PATH
+#-------------------------------
+LD_LIBRARY_PATH=${CLARIFY_ENV_DIR}:${LD_LIBRARY_PATH}
+
+#-------------------------------
+# JAVA ARGUMENTS
+#-------------------------------
+#JAVA_ARGS=" -verbose"
+# JAVA_ARGS=${JAVA_ARGS}" -Djava.library.path="${LD_LIBRARY_PATH}
+# JAVA_ARGS=${JAVA_ARGS}" -Dweblogic.ThreadPoolSize=100 -Dweblogic.ThreadPoolPercentSocketReaders=80 -DAM_CC_CONNECT=true"
+# JAVA_ARGS=${JAVA_ARGS}" -Dweblogic.alternateTypesDirectory=${HOME}/JEE/CRMProduct/application/AmdocsCRMApplication/lib"
+# JAVA_ARGS=${JAVA_ARGS}" -Damdocs.security.root="${CLFY_ASM} 
+# JAVA_ARGS=${JAVA_ARGS}" -Damdocs.system.home="${CLFY_ASM}
+# JAVA_ARGS=${JAVA_ARGS}" -Damdocs.uams.config.resource=res/crm/secsrv"
+# JAVA_ARGS=${JAVA_ARGS}" -Djava.security.auth.login.config=${HOME}/JEE/CRMProduct/WLS/CRMDomain/auth.conf"
+#JAVA_ARGS=${JAVA_ARGS}" -Dwls.home=${WLS_HOME} -Dweblogic.home=${WLS_HOME}"
+#JAVA_ARGS=${JAVA_ARGS}" -Djava.security.auth.login.config=${HOME}/JEE/CRMProduct/WLS/CRMDomain/auth.conf -Damdocs.uams.config.resource=res/crm/secsrv -Damdocs.uams.config.print=true -Damdocs.uams.startup.password=none  -Damdocs.system.home=${CLFY_ASM} -DserviceNavigator.properties=${HOME}/JEE/CRMProduct/WLS/CRMDomain/sn-properties.xml -Dbypass.opid.sync=false"
+#JAVA_ARGS=${JAVA_ARGS}" -DAsmLogin=true -cp "${CLASSPATH_CP}:${CLASSPATH}; export JAVA_ARGS
+#JAVA_ARGS=${JAVA_ARGS}" -cp "${CLASSPATH_CP}:${CLASSPATH}; export JAVA_ARGS
+
+
+#MEM_ARGS="-Xmx512m -Xms256m -XX:PermSize=128m -XX:MaxPermSize=256m"
+#MEM_ARGS="-Xss2m -Xms2048m -Xmx2048m -XX:PermSize=256m -XX:MaxPermSize=256m"
+#export MEM_ARGS
+#echo $JAVA_ARGS
+
+#-------------------------------
+# OMS JAVA ARGUMENTS
+#-------------------------------
+#JAVA_ARGS=${JAVA_ARGS}" -Djava.library.path="${LD_LIBRARY_PATH}
+JAVA_ARGS=${JAVA_ARGS}" -Dweblogic.ThreadPoolSize=100 -Dweblogic.ThreadPoolPercentSocketReaders=80 -DAM_CC_CONNECT=true"
+JAVA_ARGS=${JAVA_ARGS}" -Dweblogic.alternateTypesDirectory=${HOME}/JEE/CRMProduct/application/AmdocsCRMApplication/lib"
+JAVA_ARGS=${JAVA_ARGS}" -Damdocs.security.root="${CLFY_ASM} 
+JAVA_ARGS=${JAVA_ARGS}" -Damdocs.system.home="${CLFY_ASM}
+#JAVA_ARGS=${JAVA_ARGS}" -Damdocs.system.home=/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/asm_home/CRMDomain/CRMServer"
+JAVA_ARGS=${JAVA_ARGS}" -Damdocs.uams.config.resource=res/dummy"
+JAVA_ARGS=${JAVA_ARGS}" -Damdocs.uams.startup.password=none"
+#JAVA_ARGS=${JAVA_ARGS}" -Dcom.amdocs.uif.server.UifConfigReader=com.amdocs.oms.uif.config.OrderingUifConfigReader"
+#JAVA_ARGS=${JAVA_ARGS}" -Dcom.amdocs.oms.uif.config.dir=/amxusers3/test/oms/chioms4/JEE/config/oms/application/config"
+JAVA_ARGS=${JAVA_ARGS}" -Djava.security.auth.login.config="${HOME}"/JEE/CRMProduct/WLS/CRMDomain/auth.conf"
+JAVA_ARGS=${JAVA_ARGS}" -DAsmLogin=true -cp "${CLASSPATH}; export JAVA_ARGS
+

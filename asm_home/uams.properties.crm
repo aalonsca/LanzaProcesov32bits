@@ -1,0 +1,222 @@
+# **********************************************************
+# 1. Sample uams.properties file. 
+# 2. Specify the values based on the enviornment.
+# 3. Uncomment means remove the "#" at the start of the line
+# **********************************************************
+
+
+#************************************************************
+# Multicast Notification Parameters 
+#************************************************************
+
+// In an environment where the same ASM database is used by
+// multiple app servers, such as a clustered CRM environment
+// or CRM integrated with ABP, each server must:
+// 1) use the same version of the AmdocsSecurityManager.jar
+// 2) set NOTIFICATION_SERVER_DISABLED to false (the default)
+// 3) uncomment and set the same EVENTS property values (other
+//    environments not sharing the same ASM database must not 
+//    use the same values as below)
+NOTIFICATION_SERVER_DISABLED=true
+// value can be any string
+#EVENTS_DOMAIN=<MachineName>Cluster
+// obtain a unique multicast address from your Network Operations team
+#EVENTS_IP=224.10.12.77
+// unused port number on your machine
+#EVENTS_PORT=9074
+
+EVENTS_IP=224.1.5.4
+EVENTS_DOMAIN=dxint1
+EVENTS_PORT=10311
+
+
+#************************************************************
+# CRM Specific Parameters
+# Please don't change the parameter values
+#************************************************************
+
+policy.account.lockout.count=0
+CRM_SINGLETONE_MODE=false
+
+# ASM ticket idle timeout in seconds - defaults to 9hours
+SESS_FACT_IDL_TIMOUT=32400
+
+# ASM ticket expiration time in seconds - approx 24 days
+SESS_FACT_EXP_TIMOUT=86400
+
+#************************************************************
+# Database User Credentials 
+# specifiy the values accordingly
+#************************************************************
+
+#SEC_DB_USER=sa
+// **** The password will be encrypted by ASM at startup.
+// Change the password to clear text if the password is
+// encrypted and the file is copied to another location ****
+#SEC_DB_PWD=sa
+
+#************************************************************
+# MS-SQL Database Parameters 
+# <uncomment the parameters if using MS-SQL>
+# specifiy the values accordingly
+#************************************************************
+
+#RDBMS_DB_TYPE=SqlServer
+#SEC_DB_FULL_URL=jdbc:sqlserver://<db_server_name>:<port>;databaseName=<db_name>
+#SEC_DB_USE_FULL_URL=true
+#SEC_DB_DRIVER_CLASSNAME=com.microsoft.sqlserver.jdbc.SQLServerDriver
+#JDBC_OPTIMIZATION=false
+
+#************************************************************
+# ORACLE Database Parameters 
+# <uncomment the parameters if using Oracle>
+# specifiy the values accordingly
+#************************************************************
+
+#SEC_DB_HOST=<db_server_name>
+#SEC_DB_INST=<db_name>
+#SEC_DB_PORT=1521
+
+SEC_DB_USER=CHISEC4
+SEC_DB_PWD=<USE>K=<key>.uams.config.crypto.0;M=J2surPj7iVZNUI8EjC8EX22;</USE>
+SEC_DB_HOST=dxdb1
+SEC_DB_INST=CHIABPA1
+SEC_DB_PORT=1710
+
+
+
+
+#************************************************************
+# WebSphere specific parameters
+# <uncomment the below entries if using WebSphere>
+#************************************************************
+#WEBSPHERE_DISABLED=0
+#WL8_DISABLED=1
+#WL9_DISABLED=1
+#STEP_SESS_RAND_ALGORITHM=IBMSecureRandom
+
+
+#************************************************************
+# External Authentication parameters 
+# <uncomment the parameters if using external authentication>
+# Please don't change the parameter values
+#************************************************************
+
+#CALLBACK_EXTERNAL_STARTUP=0
+#EXTERNAL_DIRECT_LOGIN_LNNAME=CrmLoginService
+#CRM_DIRECT_LOGIN_LNNAME=HidenCrmLoginService
+#CRM_LOGINSP_LNNAME=HidenCrmLoginSP
+#EXTERNAL_LOGINSP_LNNAME=CrmLoginSP
+#MULTI_PWD_CRED_CHANGE_IN_CALLBACKS=true
+#CALLBACK_EXTERNAL_FLAGS=10001
+
+#************************************************************
+# Modify the entries below for external authentication
+# <uncomment the parameters if using external authentication>
+# specifiy the values accordingly
+#************************************************************
+
+// any id for the external authentication module 
+#EXTERNAL_CALLBACK_MASTER_NAME=<module_id>
+// the id specified in EXTERNAL_CALLBACK_MASTER_NAME 
+#MULTI_PWD_CRED_CALLBACKS_LIST=<application_id>
+// external authentication security callback class name 
+#EXTERNAL_CALLBACK_CLASS=<external_authentication_module_classname>
+
+
+#************************************************************
+# Multi-Backend parameters 
+# <uncomment the parameters if using OMS with CRM>
+# specifiy the values accordingly
+#************************************************************
+
+// edit host and port
+#CALLBACK_OMS_PROPS=\
+#backend.url=t3://<host>:<port>; \
+#callback.impl.class=amdocs.oms.api.ui.uamsimpl.SecurityCallbackImpl; \
+#ejb.lookup.name=/omsserver_weblogic_9/amdocs/uamsx/external/callback/ejb/EJBSecurityCallback; \
+#delegated.callback.class=amdocs.uamsx.external.callback.ejb.UamsSecurityBean; \
+#security.callback.class=amdocs.oms.api.uamsimpl.SecurityCallbackImpl
+#CALLBACK_OMS_CLASS=amdocs.uamsx.external.callback.ejb.EJBWebLogicSecurityCallbackProxy
+#CALLBACK_OMS_STARTUP=0
+// add OMS callback to callback list (CRM is the master, it need not be added)
+#CALLBACK_LOGIN_LIST=OMS
+// OMS callback's type (0 - mandatory [the default], 1 - optional and 2 - lazy)
+#CALLBACK_LOGIN_TYPES=OMS=1
+
+# **** Temporary Workaround for a bug in BEA WebLogic v9.2mp1 *************
+PRINCIPAL_VALIDATOR_CLASS=weblogic.security.provider.PrincipalValidatorImpl
+USE_WEBLOGIC_PRINCIPAL=true
+
+#Please do not remove.  Defined CRM attribute for postponing invalidation of the ASM ticket in the 
+#integrated environment.
+#The ASCF does the ticket invalidation at the end of all backends, so CRM does not need to do this.
+SESS_ATTR_ENABLE_UPDATE_ATTR_LIST=CRM_SKIP_INVALIDATE_TICKET
+
+#************************************************************
+# AMSS integration 
+# 
+# 
+#************************************************************
+CALLBACK_AMSS_STARTUP=0
+AMSS_SRV_CONN=${amss.host}:%amss.wls.port%
+ABP_CONN_LOGINSP_DISABLED=0
+ABP_SEC_SRV_CONN=dxint1:10311
+PROXY_LOGINSP_DISABLED=0
+PROXY_SEC_SRV_CONN=${amss.host}:%amss.wls.port%
+
+
+#**************************************************************
+# OMS CallBack
+#
+#**************************************************************
+
+#CRM_SINGLETONE_MODE=false
+#CALLBACK_OMS_CLASS=amdocs.uamsx.external.callback.ejb.EJBSecurityCallbackProxy
+#CALLBACK_OMS_PROPS=\
+#backend.url=t3://dxint1:40400; \
+#callback.impl.class=amdocs.oms.api.uamsimpl.SecurityCallbackImpl;initial.ctx.factory=weblogic.jndi.WLInitialContextFactory; \
+#ejb.lookup.name=/omsserver_weblogic_9/amdocs/uamsx/external/callback/ejb/EJBSecurityCallback; \
+#delegated.callback.class=amdocs.uamsx.external.callback.ejb.UamsSecurityBean; \
+#security.callback.class=amdocs.oms.api.uamsimpl.SecurityCallbackImpl
+#CALLBACK_OMS_STARTUP=0
+#CALLBACK_LOGIN_LIST=OMS
+#SESS_CACHE_TTL=1
+#SESS_CACHE_SIZE=0
+#CALLBACK_LOGIN_TYPES=OMS=1
+
+# The following parameter was added in BSS to enable the automatic creation
+# of users in Billing after they are created in CRM - guys Aug, 2009
+# This solution was provided for core case 367472-052009.
+# Core said they will set this value as the default in future releases
+EXTERNAL_MAYUSE_CTX_USER=false
+
+DEBUG_LOG_FILTER_SEVERITY=64
+#LOGIN_RESULTS_TRACE=true <-> LOGIN_RESULTS_TRACE=true
+#LOGINSP_TRACE=true <-> LOGINSP_TRACE=true
+
+# Disable refreshing of idle in DB as idle and expiration of session are the same, so it is not required
+SESS_ALLOW_RESET_IDLE=false
+
+# ASM session cleaner
+# Session cleaner by default is activated on all ASM servers. It is responsible for removing ASM dead sessions (not logged-out) in DB. 
+# The session cleaner should only be configured to be running on 1 or 2 ASM servers (JVMs).  If not it will overload the DB.
+# On the specific application server (1 or 2) where you want Session Cleaner to run, you can add the following JVM parameters: 
+#      -DSESS_CLEAN_STARTUP=0
+#      -DSESS_CLEAN_SLEEP=86400   (Indicates the sleep time in seconds between runs - 24 hours)
+# For SESS_CLEAN_SLEEP, the default value is 60; session cleaner is activated and its sleep time is 60 seconds. It means that session cleaner performs a 
+# full search and deletes expired sessions every minute. In case of high number of opened sessions in the sec1_session table and multiple servers, it can cause a memory problem 
+# and critical load on the DB.
+# Disable session cleaner 
+SESS_CLEAN_STARTUP=1
+
+# Delay time for rejected authentication. The default value is 3 seconds. We changed it to 0 as CRM has many cases where it uses WLS default users which are not recognized by ASM
+AUTHN_REJECT_DELAY=0
+
+
+#Set the ASM Facilities that will be captured in the debug log. It is set to default value (4194303) currently which represents ALL UAMS facilities.
+DEBUG_LOG_FILTER_FACILITY=4194303
+
+#Set the debug log file's maximum file size. When the file reaches its maximum size, it is closed and a new log file is opened. 
+# It is set to default value (512000) currently (in Bytes, it's set to 500 MB).
+DEBUG_LOG_FILE_SIZE=512000

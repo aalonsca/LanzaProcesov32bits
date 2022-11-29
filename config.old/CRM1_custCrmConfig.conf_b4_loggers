@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ASC [
+<!ENTITY empty "&#x2400;" >]>
+
+<AmdocsConfig xmlns:md="amdocs.com" version="1.0">
+  <customization ID="b7b99fd50768ac2b">
+    <crm ID="307ccfb6174210a6">
+      <baseConfig ID="028614598a663f65">
+        <aif ID="198b073916af7925">
+          <Connection ID="9e711ed2ff99996a">
+            <Password ID="34b50714c1cfa294">
+              <md:type>encrypted</md:type>
+            </Password>
+          </Connection>
+          <Resources ID="5b2b9336b60f9b2b">
+            <Ejb ID="b48bd3ef39cb800e" overrideid="8d7a3385cb7de6ea">
+              <md:isarray>true</md:isarray>
+            </Ejb>
+            <JMSQueue ID="1320afa7d32edb75" overrideid="1c98a0fa371d3b61">
+              <md:isarray>true</md:isarray>
+            </JMSQueue>
+            <Ejb ID="8c8b88dbd8415505" overrideid="4d406b1c437a2835">
+              <Connection ID="6ff917c2ff99f61a">../../../Connections/Connection[sourceid()='7275b32efd9bfbc9']</Connection>
+            </Ejb>
+            <Ejb ID="1c524428e13f5337" overrideid="0c20082528ca128c">
+              <Connection ID="6e74e5991466e21d">../../../Connections/Connection[sourceid()='26fb2faf74d6a573']</Connection>
+            </Ejb>
+            <Ejb ID="6fac83a628ab1b9d" overrideid="1e51b5fe2ddced2f">
+              <Connection ID="41895c01e8d9512c">../../../Connections/Connection[sourceid()='126e4deaa9273cf2']</Connection>
+            </Ejb>
+            <Ejb ID="adf550a432253633" overrideid="d504294c3181b593">
+              <Connection ID="549231dde8e5a586">../../../Connections/Connection[sourceid()='126e4deaa9273cf2']</Connection>
+            </Ejb>
+            <Ejb ID="7315c7fc5c89c5c2" overrideid="d1edd2957d479602">
+              <Connection ID="4150ff401bbf6065">../../../Connections/Connection[sourceid()='dadd56f659a40878']</Connection>
+            </Ejb>
+            <Ejb ID="d15910d4e119f51c" overrideid="10f1863c76d75795">
+              <Connection ID="061475149ec1f283">../../../Connections/Connection[sourceid()='c4f7b9082a5be860']</Connection>
+            </Ejb>
+            <Ejb ID="38e5881c251f547d" overrideid="79701e504bee594c">
+              <Connection ID="39ea70bc04d73da4">../../../Connections/Connection[sourceid()='c4f7b9082a5be860']</Connection>
+            </Ejb>
+            <Ejb ID="80fc4b2c2c342dec" overrideid="4cceae3a2121b8fb">
+              <Connection ID="646eab5418e9468d">../../../Connections/Connection[sourceid()='126e4deaa9273cf2']</Connection>
+            </Ejb>
+            <Ejb ID="b78ef8f3cfc147b0" overrideid="8c0273d3b1f2184f">
+              <Connection ID="b043370655468353">../../../Connections/Connection[sourceid()='126e4deaa9273cf2']</Connection>
+            </Ejb>
+            <Ejb ID="bbe863850a1b5290" overrideid="0f88f56c5121da86">
+              <Connection ID="b47112cd1885f94e">../../../Connections/Connection[sourceid()='126e4deaa9273cf2']</Connection>
+            </Ejb>
+            <Ejb ID="f82ffded0b0097f3" overrideid="5c814de3f09da654">
+              <Connection ID="00b91474ad588c18">../../../Connections/Connection[sourceid()='126e4deaa9273cf2']</Connection>
+            </Ejb>
+            <Ejb ID="92f0e51dde30b33f" overrideid="6f455f91e4bf13ae">
+              <Connection ID="7a6aff0be8b19fce">../../../Connections/Connection[sourceid()='126e4deaa9273cf2']</Connection>
+            </Ejb>
+            <Ejb ID="c3be196453f34e2f" overrideid="d9f90ca7b4839259">
+              <Connection ID="e99d2025be333393">../../../Connections/Connection[sourceid()='903faccf6e3894d6']</Connection>
+            </Ejb>
+            <Ejb ID="7deefc7d3116e79f" overrideid="2585ffaef7beaf17">
+              <Connection ID="5a51c34261c8ca86">../../../Connections/Connection[sourceid()='903faccf6e3894d6']</Connection>
+            </Ejb>
+            <Ejb ID="6e41beae6eb7a216" overrideid="68f1a64363c31b1e">
+              <Connection ID="f86ce5689e7aefc7">../../../Connections/Connection[sourceid()='903faccf6e3894d6']</Connection>
+            </Ejb>
+            <Ejb ID="b25c7fd16a2e12a2" overrideid="f83cfc88d8f37d7e">
+              <Connection ID="2dd0d05abe7c5e97">../../../Connections/Connection[sourceid()='903faccf6e3894d6']</Connection>
+            </Ejb>
+            <Ejb ID="778984cc2ca53457" overrideid="a6ec7aa80bd417be">
+              <Connection ID="94f31df670745b24">../../../Connections/Connection[sourceid()='903faccf6e3894d6']</Connection>
+            </Ejb>
+            <Ejb ID="a29aedb7fb326dff" overrideid="0aabc0280ede2229">
+              <Connection ID="e9e48df5586c45ab">../../../Connections/Connection[sourceid()='903faccf6e3894d6']</Connection>
+            </Ejb>
+            <Ejb ID="04d4ff7d2dded252" overrideid="39c417994fa6c944">
+              <Connection ID="9991de68790d9ad7">../../../Connections/Connection[sourceid()='903faccf6e3894d6']</Connection>
+            </Ejb>
+            <Ejb ID="b8fcec21947cc65c" overrideid="a7a17f477ced4ea3">
+              <Connection ID="827e92b57ed85695">../../../Connections/Connection[sourceid()='903faccf6e3894d6']</Connection>
+            </Ejb>
+            <Ejb ID="9afa959d03a5bf43" overrideid="1f9cdc251a0595f0">
+              <Connection ID="0f9aaa66775314bf">../../../Connections/Connection[sourceid()='903faccf6e3894d6']</Connection>
+            </Ejb>
+            <Ejb ID="e2d84b2a81bdbf89" overrideid="cdac07fdb8c664b2">
+              <Connection ID="8dec0e79e5e1bf77">../../../Connections/Connection[sourceid()='903faccf6e3894d6']</Connection>
+            </Ejb>
+            <Ejb ID="2356e4bb0d2cc960" overrideid="0dae71d3c7adc87d">
+              <Connection ID="86b1c18124c68562">../../../Connections/Connection[sourceid()='7275b32efd9bfbc9']</Connection>
+            </Ejb>
+            <Ejb ID="60acf6fa3e2ee69e" overrideid="7e8cd7c10b6ba54c">
+              <Connection ID="a7122fe05d2e29f6">../../../Connections/Connection[sourceid()='7275b32efd9bfbc9']</Connection>
+            </Ejb>
+            <Ejb ID="4d49880333e08f95" overrideid="03485ea6d0889c82">
+              <Connection ID="547ff7a652aecd91">../../../Connections/Connection[sourceid()='7275b32efd9bfbc9']</Connection>
+            </Ejb>
+            <Ejb ID="8c857851dacacac3" overrideid="952c916dc72211ab">
+              <Connection ID="07f7a78f471500c5">../../../Connections/Connection[sourceid()='7275b32efd9bfbc9']</Connection>
+            </Ejb>
+            <Ejb ID="198afec4486c88d7" overrideid="9ce452ba66c1debc">
+              <Connection ID="40ca0be77d13760a">../../../Connections/Connection[sourceid()='7275b32efd9bfbc9']</Connection>
+            </Ejb>
+            <Ejb ID="ce19a9c6a789a4ac" overrideid="d6a42108d5b83a3f">
+              <Connection ID="cac35f325582d3e9">../../../Connections/Connection[sourceid()='7275b32efd9bfbc9']</Connection>
+            </Ejb>
+            <Ejb ID="8bc1ebf378a5ffb8" overrideid="90f1774cc63f5ead">
+              <Connection ID="86c943ff3ffd5473">../../../Connections/Connection[sourceid()='7275b32efd9bfbc9']</Connection>
+            </Ejb>
+            <Ejb ID="8506861784b0dbc0" overrideid="9071fe4924e570fc">
+              <Connection ID="f6653e04039f7f49">../../../Connections/Connection[sourceid()='7275b32efd9bfbc9']</Connection>
+            </Ejb>
+            <Ejb ID="4b88cc2781698402" overrideid="a75f5a4bea81852f">
+              <Connection ID="c84a306c5cefb96c">../../../Connections/Connection[sourceid()='7275b32efd9bfbc9']</Connection>
+            </Ejb>
+            <Ejb ID="0f7499804718e918" overrideid="cf817a6c8c113271">
+              <Connection ID="2aa6863d04f8c282">../../../Connections/Connection[sourceid()='7275b32efd9bfbc9']</Connection>
+            </Ejb>
+            <Ejb ID="10ff79b65e142d3d" overrideid="26c63772505721dc">
+              <Connection ID="395246bf9ce5607e">../../../Connections/Connection[sourceid()='7275b32efd9bfbc9']</Connection>
+            </Ejb>
+            <Ejb ID="8c54a6b7f348ecb7" overrideid="8f2ab2a283e70eb8">
+              <Connection ID="c19ef626bf0b86cc">../../../Connections/Connection[sourceid()='7275b32efd9bfbc9']</Connection>
+            </Ejb>
+            <Ejb ID="e783b8f4eb559868" overrideid="45ea84c0876b6df2">
+              <Connection ID="18b5e68137fbd501">../../../Connections/Connection[sourceid()='9d193babb701ba0a']</Connection>
+            </Ejb>
+            <Ejb ID="5081c5b7e2eaf660" overrideid="1fb6c25c5306b596">
+              <Connection ID="71bcd0b13bc3a158">../../../Connections/Connection[sourceid()='9d193babb701ba0a']</Connection>
+            </Ejb>
+            <Ejb ID="c69140495f33074e" overrideid="a74fcf593c17caa8">
+              <Connection ID="37286661610d349e">../../../Connections/Connection[sourceid()='9d193babb701ba0a']</Connection>
+            </Ejb>
+            <Ejb ID="766d2814aca69c27" overrideid="5b14d13259e2d8d8">
+              <Connection ID="2d88663ed6d9283d">../../../Connections/Connection[sourceid()='c4f7b9082a5be860']</Connection>
+            </Ejb>
+            <Ejb ID="1a85c8cc08325e08" overrideid="7c6ce925e5d6e4b0">
+              <Connection ID="3f3296dee83678b8">../../../Connections/Connection[sourceid()='c4f7b9082a5be860']</Connection>
+            </Ejb>
+            <Ejb ID="29a7e2d9492df72c" overrideid="233f61d931756954">
+              <Connection ID="4b5f6f2d6fd82d76">../../../Connections/Connection[sourceid()='dadd56f659a40878']</Connection>
+            </Ejb>
+            <Ejb ID="88a768108a0f1a35" overrideid="19d67bd45bc8dda3">
+              <Connection ID="a20d20f7717c1238">../../../Connections/Connection[sourceid()='dadd56f659a40878']</Connection>
+            </Ejb>
+            <Ejb ID="be2fb2fc3dbac8d7" overrideid="5d65f41c5e08b45b">
+              <Connection ID="480afe48bb24e7f2">../../../Connections/Connection[sourceid()='dadd56f659a40878']</Connection>
+            </Ejb>
+            <Ejb ID="2460e919d7046d43" overrideid="d6c4960ca0e40f5f">
+              <Connection ID="ef5c9b1bf0c7269d">../../../Connections/Connection[sourceid()='dadd56f659a40878']</Connection>
+            </Ejb>
+            <Ejb ID="82928d9ce15d5be6" overrideid="d0d1d31230704cce">
+              <Connection ID="c256d952bdd659d7">../../../Connections/Connection[sourceid()='453497c2e07b4cb4']</Connection>
+            </Ejb>
+            <Ejb ID="fe7f5e1a3469850f" overrideid="17b1f21e3037f211">
+              <Connection ID="399fcb8a72946ded">../../../Connections/Connection[sourceid()='c4f7b9082a5be860']</Connection>
+            </Ejb>
+            <JMSQueue ID="f6a12db1368e4830" overrideid="c73484f6fc5543a8">
+              <JmsConnFactoryJndiName ID="c0493989811cc51b">PAGConnectionFactory</JmsConnFactoryJndiName>
+            </JMSQueue>
+            <Tuxedo ID="Other63632f54311ae884T">
+              <Name ID="Other9245cbaf55afc153T">TuxedoResource</Name>
+              <Connection ID="Other06bd864ab176cafbT">TuxedoConnection</Connection>
+              <AuthenticationServer ID="Otherda475953fdb9341eT">false</AuthenticationServer>
+              <IDLETIMEOUT ID="Other8965fe1c2953528dT">10</IDLETIMEOUT>
+              <RECVTIMEOUT ID="Otherfef2950c9ed09dc8T">10</RECVTIMEOUT>
+            </Tuxedo>
+            <Tuxedo ID="63632f54311ae884CIMEI">
+              <Name ID="9245cbaf55afc153CIMEI">TuxedoResourceCIMEI</Name>
+              <Connection ID="06bd864ab176cafbCIMEI">TuxedoConnectionCIMEI</Connection>
+              <AuthenticationServer ID="da475953fdb9341eCIMEI">false</AuthenticationServer>
+              <IDLETIMEOUT ID="8965fe1c2953528dCIMEI">10</IDLETIMEOUT>
+              <RECVTIMEOUT ID="fef2950c9ed09dc8CIMEI">20</RECVTIMEOUT>
+            </Tuxedo>
+            <Tuxedo ID="fe04f0306201fede">
+              <Name ID="fe03a179a9a7fede">ACCLB_Domain</Name>
+              <Connection ID="fe0ff0ddf7acfede">ACCLBDomainConnection</Connection>
+              <JoltUserRole ID="fe065b3ae186fede">AMDOCS</JoltUserRole>
+              <JoltApplicationPassword ID="fe0e1fa53767fede">tuxedo</JoltApplicationPassword>
+              <AuthenticationServer ID="fe0f34cb2380fede">false</AuthenticationServer>
+              <IDLETIMEOUT ID="fe019f4f1a378fede">30</IDLETIMEOUT>
+              <RECVTIMEOUT ID="fe00bfad1f21fede">30</RECVTIMEOUT>
+            </Tuxedo>
+            <Tuxedo ID="fe0fe0305201fede">
+              <Name ID="fe0fe077n9a7fede">Recargas_Domain</Name>
+              <Connection ID="fe0fg0ddf7acfede">Recargas_DomainConnection</Connection>
+              <JoltUserRole ID="fe0fe03ae176fede">MIG_RECARGAS</JoltUserRole>
+              <JoltApplicationPassword ID="fe0fe0a63767fede">tuxedo</JoltApplicationPassword>
+              <AuthenticationServer ID="fe0fe0cb2350fede">false</AuthenticationServer>
+              <IDLETIMEOUT ID="fe0fe04f1a478fede">30</IDLETIMEOUT>
+              <RECVTIMEOUT ID="fe0fe0ad1f71fede">30</RECVTIMEOUT>
+            </Tuxedo>
+            <Ejb ID="8af7ab19c626675e">
+              <Name ID="9eacaaa2fd0ad392">amdocs.bpm.ejb.aif.ProcMgrSession</Name>
+              <Connection ID="75cd9597e93838a4">../../../Connections/Connection[sourceid()='e9d7d48219469e46']</Connection>
+              <JndiHome ID="ac98c3319aa31790">/crm/amdocs/bpm/ejb/ProcMgrSession</JndiHome>
+              <ContainerType ID="e3faa9bd2f36505f">WebLogic</ContainerType>
+            </Ejb>
+          </Resources>
+          <Connections ID="315b3191e274eb9e">
+            <Connection ID="5a900d7fd6f4e719" overrideid="f66db8cc131b8edc">
+              <md:isarray>true</md:isarray>
+            </Connection>
+            <Connection ID="38b4f029202a2dc7" overrideid="bdd27b3ae98f020f">
+              <ProviderUrl ID="61e6542bd9c921ae">${cc:integrative/CRM/crm.server.url}</ProviderUrl>
+              <ProxyUsername ID="13f5f5cf48f82645">&empty;</ProxyUsername>
+              <ConnPoolSize ID="77eaed5567d2a663">${cc:CRM/crm.server.poolsize:-300}</ConnPoolSize>
+            </Connection>
+            <Connection ID="d5bffd5a7f61d070" overrideid="8c576834381cb12a">
+              <ProviderUrl ID="7af15730b24b65de">${cc:CRM/PROCMGR/crm.apm.server.url}</ProviderUrl>
+            </Connection>
+            <Connection ID="a7b83f5c699210f6" overrideid="7275b32efd9bfbc9">
+              <ProviderUrl ID="bfa23b7392550e00">${cc:integrative/ABP/abp.CM.jee.url:-${cc:integrative/ABP/abp.server.url}}</ProviderUrl>
+            </Connection>
+            <Connection ID="c717ef8f5dd81f3b" overrideid="903faccf6e3894d6">
+              <ProviderUrl ID="93fdb164c65e2fe3">${cc:integrative/ABP/abp.AR.jee.url:-${cc:integrative/ABP/abp.server.url}}</ProviderUrl>
+            </Connection>
+            <Connection ID="2e5112f28d0d26d2" overrideid="dadd56f659a40878">
+              <ProviderUrl ID="5a16b4c29ece4209">${cc:integrative/ABP/abp.CL.jee.url:-${cc:integrative/ABP/abp.server.url}}</ProviderUrl>
+            </Connection>
+            <Connection ID="c65931a23f63ced4" overrideid="10d2b2d332f52c49">
+              <ProviderUrl ID="71c15a9363a9d756">${cc:integrative/ABP/abp.CCS.jee.url:-${cc:integrative/ABP/abp.server.url}}</ProviderUrl>
+            </Connection>
+            <Connection ID="2a3b6329d016324b" overrideid="1b11c6c912379b00">
+              <ProviderUrl ID="4b217ebe6f37bcc0">${cc:integrative/ABP/abp.VM.jee.url:-${cc:integrative/ABP/abp.server.url}}</ProviderUrl>
+            </Connection>
+            <Connection ID="06b11948d1ae982a" overrideid="26fb2faf74d6a573">
+              <ProviderUrl ID="605eb3950f2ae55d">${cc:integrative/ABP/abp.RM.jee.url:-${cc:integrative/ABP/abp.server.url}}</ProviderUrl>
+            </Connection>
+            <Connection ID="fa32eef084bfeeb3" overrideid="9d193babb701ba0a">
+              <ProviderUrl ID="1d8db25500c6f937">${cc:integrative/ABP/abp.RPL.jee.url:-${cc:integrative/ABP/abp.server.url}}</ProviderUrl>
+            </Connection>
+            <Connection ID="b090ed175224538f" overrideid="126e4deaa9273cf2">
+              <ProviderUrl ID="cfcd3056adba5266">${cc:integrative/ABP/abp.BL.jee.url:-${cc:integrative/ABP/abp.server.url}}</ProviderUrl>
+            </Connection>
+            <Connection ID="3bec0a6ac024b08b" overrideid="6834d0a32c7a7238">
+              <ProviderUrl ID="b8241ac537459c7d">${cc:integrative/ABP/abp.BLM.jee.url:-${cc:integrative/ABP/abp.server.url}}</ProviderUrl>
+            </Connection>
+            <Connection ID="4029430624e8b4c5" overrideid="453497c2e07b4cb4">
+              <ProviderUrl ID="3fe6f39fc5ef70b9">${cc:integrative/ABP/abp.MMO.jee.url:-${cc:integrative/ABP/abp.server.url}}</ProviderUrl>
+            </Connection>
+            <Connection ID="2aaa690681a5f615" overrideid="0c99c787d080e2f2">
+              <ProviderUrl ID="44e51e14686e727e">${cc:integrative/ABP/abp.JF.jee.url:-${cc:integrative/ABP/abp.server.url}}</ProviderUrl>
+            </Connection>
+            <Connection ID="fb1d55e21165ab0c" overrideid="5e63e3e20236ba21">
+              <ProviderUrl ID="b7bca3ed3db2a359">${cc:integrative/ABP/abp.TRB.jee.url:-${cc:integrative/ABP/abp.server.url}}</ProviderUrl>
+            </Connection>
+            <Connection ID="ec5cb367b7e8c523T">
+              <Name ID="Other3f588cd65dec34d4T">TuxedoConnection</Name>
+              <ConnType ID="Otherb18bb1a3074d26cdT">ProxyUser</ConnType>
+              <ProviderUrl ID="Other6baeedc3cfc363d2T">//10.97.60.111:25490,//10.97.60.111:25480</ProviderUrl>
+              <ProxyUsername ID="Other209a399ecc45e9bbT">clarify</ProxyUsername>
+              <ProxyPassword ID="Other535f42e8f03757cdT">clarify</ProxyPassword>
+              <ConnPoolSize ID="Otherd0f81b6ac2148909T">5</ConnPoolSize>
+              <RetryPolicy ID="Other1977591374a13027">
+                <MaxRetryCount ID="Otherda18f318e65ff3ec">2</MaxRetryCount>
+                <RetryWaitTime ID="Other95d1dc60e59bb59c">5</RetryWaitTime>
+              </RetryPolicy>
+            </Connection>
+            <Connection ID="ec5cb367b7e8c523CIMEI">
+              <Name ID="Other3f588cd65dec34d4CIMEI">TuxedoConnectionCIMEI</Name>
+              <ConnType ID="Otherb18bb1a3074d26cdCIMEI">ProxyUser</ConnType>
+              <ProviderUrl ID="Other6baeedc3cfc363d2CIMEI">
+                //10.97.60.165:24600,//10.97.60.49:24605,//10.97.60.165:24615,//10.97.60.49:24615,//10.97.60.165:24605,//10.97.60.165:24610
+              </ProviderUrl>
+              <ProxyUsername ID="Other209a399ecc45e9bbCIMEI">amdocs</ProxyUsername>
+              <ProxyPassword ID="Other535f42e8f03757cdCIMEI">amdocs</ProxyPassword>
+              <ConnPoolSize ID="Otherd0f81b6ac2148909CIMEI">6</ConnPoolSize>
+              <RetryPolicy ID="Other1977591374a13027CIMEI">
+                <MaxRetryCount ID="Otherda18f318e65ff3ecCIMEI">2</MaxRetryCount>
+                <RetryWaitTime ID="Other95d1dc60e59bb59cCIMEI">5</RetryWaitTime>
+              </RetryPolicy>
+            </Connection>
+            <Connection ID="fe0cb367b7e8cfede">
+              <Name ID="fe0e45858b80fede">ACCLBDomainConnection</Name>
+              <ConnType ID="fe0645858b80fede">ProxyUser</ConnType>
+              <ProviderUrl ID="fe0ed83ef8cafede">//195.233.178.72:52800</ProviderUrl>
+              <ProxyUsername ID="fe064585fedefede">amdocs</ProxyUsername>
+              <ProxyPassword ID="fe0dd83ef8cafede">amdocs</ProxyPassword>
+              <ConnPoolSize ID="fe0dd83efedefede">75</ConnPoolSize>
+              <RetryPolicy ID="fe0e90c4915efede">
+                <MaxRetryCount ID="fe0090c4915efede">2</MaxRetryCount>
+                <RetryWaitTime ID="fe093fbb54fcfede">5</RetryWaitTime>
+              </RetryPolicy>
+            </Connection>
+            <Connection ID="f0f04577b7e8cfede">
+              <Name ID="f0f045858b70fede">Recargas_DomainConnection</Name>
+              <ConnType ID="f0f045858b71fede">ProxyUser</ConnType>
+              <ProviderUrl ID="f0f0d73ef8cafede">//10.97.60.162:24320,//10.97.60.162:24340,//10.97.60.57:24340</ProviderUrl>
+              <ProxyUsername ID="f0f045858e70fede">recargas</ProxyUsername>
+              <ProxyPassword ID="f0f0d73ef8cafede">recargas</ProxyPassword>
+              <ConnPoolSize ID="f0f0d73ef8cafede">3</ConnPoolSize>
+              <RetryPolicy ID="f0f090c4925efede">
+                <MaxRetryCount ID="f0f090c4925efede">2</MaxRetryCount>
+                <RetryWaitTime ID="f0f03fiu54fcfede">5</RetryWaitTime>
+              </RetryPolicy>
+            </Connection>
+            <Connection ID="93fa62d9221d98ec">
+              <Name ID="914b5b77595dd2fb">CMConnection_sim</Name>
+              <ConnType ID="ecde386c04a18a54">AsmTicket</ConnType>
+              <ProviderUrl ID="a1806b1551c65cb5">${cc:CRM/BillingSimulator/crm.simulator.server.url}</ProviderUrl>
+              <ConnPoolSize ID="41f35e952ce4cb22">${cc:CRM/crm.server.poolsize:-300}</ConnPoolSize>
+              <RetryPolicy ID="88d16a76de15ac99">
+                <MaxRetryCount ID="8f966e83a7ef8f7d">3</MaxRetryCount>
+                <RetryWaitTime ID="b111967d41b5a81d">10</RetryWaitTime>
+              </RetryPolicy>
+            </Connection>
+            <Connection ID="03733ddf1de5141d">
+              <Name ID="07e6def4d1d5c3c7">ARConnection_sim</Name>
+              <ConnType ID="57b448cd2d0d49bc">AsmTicket</ConnType>
+              <ProviderUrl ID="577f80f4b5ffa915">${cc:CRM/BillingSimulator/crm.simulator.server.url}</ProviderUrl>
+              <ConnPoolSize ID="baaf51524323c631">${cc:CRM/crm.server.poolsize:-300}</ConnPoolSize>
+              <RetryPolicy ID="a361733ccf3617f4">
+                <MaxRetryCount ID="180551b7e760557d">3</MaxRetryCount>
+                <RetryWaitTime ID="0799bbb7612f6902">10</RetryWaitTime>
+              </RetryPolicy>
+            </Connection>
+            <Connection ID="c06c3d6fb59f6e58">
+              <Name ID="f81f15c79e639990">CABPConnection</Name>
+              <ConnType ID="b9d3dedb6d65e9ed">AsmTicket</ConnType>
+              <ProviderUrl ID="64e48a9d916bcf80">${cc:integrative/ABP/abp.CABP.jee.url:-${cc:integrative/ABP/abp.server.url}}</ProviderUrl>
+              <ConnPoolSize ID="ba99c974dacbef49">${cc:CRM/crm.server.poolsize:-300}</ConnPoolSize>
+              <RetryPolicy ID="4c244c4b1d310a66">
+                <MaxRetryCount ID="752248e82f75bf8e">3</MaxRetryCount>
+                <RetryWaitTime ID="f3267ba2e347aa80">10</RetryWaitTime>
+              </RetryPolicy>
+            </Connection>
+            <Connection ID="1b4eeb4bb510afb7">
+              <Name ID="f2024d7ef73e1e92">CABPConnection_sim</Name>
+              <ConnType ID="d0888b76a58fee05">AsmTicket</ConnType>
+              <ProviderUrl ID="e2f637856777d392">${cc:CRM/BillingSimulator/crm.simulator.server.url}</ProviderUrl>
+              <ConnPoolSize ID="c531c86d18927d5e">${cc:CRM/crm.server.poolsize:-300}</ConnPoolSize>
+              <RetryPolicy ID="7fd065d7d1dfc985">
+                <MaxRetryCount ID="f807d474d9295611">3</MaxRetryCount>
+                <RetryWaitTime ID="ea26aa7c23542f49">10</RetryWaitTime>
+              </RetryPolicy>
+            </Connection>
+            <Connection ID="8c5897cc6c7d18c4">
+              <Name ID="6e35208bdfe29cb7">CLConnection_sim</Name>
+              <ConnType ID="e6ff580792709443">AsmTicket</ConnType>
+              <ProviderUrl ID="4e296681e49108a1">${cc:CRM/BillingSimulator/crm.simulator.server.url}</ProviderUrl>
+              <ConnPoolSize ID="e95247a4a696894d">${cc:CRM/crm.server.poolsize:-300}</ConnPoolSize>
+              <RetryPolicy ID="66d6d1769d40af35">
+                <MaxRetryCount ID="b3d81e1359e4b959">3</MaxRetryCount>
+                <RetryWaitTime ID="ae940aeddeb06459">10</RetryWaitTime>
+              </RetryPolicy>
+            </Connection>
+            <Connection ID="0dc6d8ee24f42045">
+              <Name ID="be2c6b9fb5f25fe5">CCSConnection_sim</Name>
+              <ConnType ID="99b614dee182cfdc">AsmTicket</ConnType>
+              <ProviderUrl ID="8e222cf0402f353d">${cc:CRM/BillingSimulator/crm.simulator.server.url}</ProviderUrl>
+              <ConnPoolSize ID="f219ca83d50ca554">${cc:CRM/crm.server.poolsize:-300}</ConnPoolSize>
+              <RetryPolicy ID="7a6c8d26bb456f66">
+                <MaxRetryCount ID="7b5755704b1c1a53">3</MaxRetryCount>
+                <RetryWaitTime ID="7c54b56f6f0ade90">10</RetryWaitTime>
+              </RetryPolicy>
+            </Connection>
+            <Connection ID="1efdb3a189ada444">
+              <Name ID="71a33c07c62d686f">VMConnection_sim</Name>
+              <ConnType ID="022df3383c4d3a93">AsmTicket</ConnType>
+              <ProviderUrl ID="fc4667510e6b077e">${cc:CRM/BillingSimulator/crm.simulator.server.url}</ProviderUrl>
+              <ConnPoolSize ID="e902fafe2a0c2a80">${cc:CRM/crm.server.poolsize:-300}</ConnPoolSize>
+              <RetryPolicy ID="742a3dceed4505f2">
+                <MaxRetryCount ID="e7a83e9ca49ef213">3</MaxRetryCount>
+                <RetryWaitTime ID="31de18959e1a419d">10</RetryWaitTime>
+              </RetryPolicy>
+            </Connection>
+            <Connection ID="91c648604af1bc21">
+              <Name ID="73efa6b1593d3f19">SRMConnection_sim</Name>
+              <ConnType ID="d0508b22556a9ed4">AsmTicket</ConnType>
+              <ProviderUrl ID="7cf5e4273f681f56">${cc:CRM/BillingSimulator/crm.simulator.server.url}</ProviderUrl>
+              <ConnPoolSize ID="5226e6e7d74b8034">${cc:CRM/crm.server.poolsize:-300}</ConnPoolSize>
+              <RetryPolicy ID="d4bda753b008adb3">
+                <MaxRetryCount ID="c20c0947503fb76b">3</MaxRetryCount>
+                <RetryWaitTime ID="c655e456d8326e8e">10</RetryWaitTime>
+              </RetryPolicy>
+            </Connection>
+            <Connection ID="f0fdfae9991e3364">
+              <Name ID="87320f900e024ca8">RPLConnection_sim</Name>
+              <ConnType ID="93c3f8e3fc653579">AsmTicket</ConnType>
+              <ProviderUrl ID="8d72bb060de86c57">${cc:CRM/BillingSimulator/crm.simulator.server.url}</ProviderUrl>
+              <ConnPoolSize ID="4acb374e06197c9a">${cc:CRM/crm.server.poolsize:-300}</ConnPoolSize>
+              <RetryPolicy ID="8de95ab8d3f28d0f">
+                <MaxRetryCount ID="74427b8525f72377">3</MaxRetryCount>
+                <RetryWaitTime ID="2c090d46aaf90ce6">10</RetryWaitTime>
+              </RetryPolicy>
+            </Connection>
+            <Connection ID="1b2568a378312bd5">
+              <Name ID="ed44bac60efff79a">INVConnection_sim</Name>
+              <ConnType ID="ac9dc6b141d06e10">AsmTicket</ConnType>
+              <ProviderUrl ID="d4e71d381037c19b">${cc:CRM/BillingSimulator/crm.simulator.server.url}</ProviderUrl>
+              <ConnPoolSize ID="e71455be924cfaee">${cc:CRM/crm.server.poolsize:-300}</ConnPoolSize>
+              <RetryPolicy ID="1324b83cb377c167">
+                <MaxRetryCount ID="d4de18c3bf9f0b10">3</MaxRetryCount>
+                <RetryWaitTime ID="ad060d993520b6fd">10</RetryWaitTime>
+              </RetryPolicy>
+            </Connection>
+            <Connection ID="4e064529b7e0161d">
+              <Name ID="083bcb0dddc0650c">BLMConnection_sim</Name>
+              <ConnType ID="a1567915ea07a883">AsmTicket</ConnType>
+              <ProviderUrl ID="4b336d7e27e19fce">${cc:CRM/BillingSimulator/crm.simulator.server.url}</ProviderUrl>
+              <ConnPoolSize ID="ce57d357ad3293ee">${cc:CRM/crm.server.poolsize:-300}</ConnPoolSize>
+              <RetryPolicy ID="617c366514af41c2">
+                <MaxRetryCount ID="a11fd21ef3cc4201">3</MaxRetryCount>
+                <RetryWaitTime ID="e06fbfa89aa1919a">10</RetryWaitTime>
+              </RetryPolicy>
+            </Connection>
+            <Connection ID="0175b41c862d483f">
+              <Name ID="7154000e6645fc22">MMOConnection_sim</Name>
+              <ConnType ID="62311a042fe6590d">AsmTicket</ConnType>
+              <ProviderUrl ID="dd83b4736e7fa66b">${cc:CRM/BillingSimulator/crm.simulator.server.url}</ProviderUrl>
+              <ConnPoolSize ID="a996cec8114ea35f">${cc:CRM/crm.server.poolsize:-300}</ConnPoolSize>
+              <RetryPolicy ID="52942275bba98e77">
+                <MaxRetryCount ID="115a4337703bd675">3</MaxRetryCount>
+                <RetryWaitTime ID="61b869a8fc427173">10</RetryWaitTime>
+              </RetryPolicy>
+            </Connection>
+            <Connection ID="f537796c24d970ff">
+              <Name ID="d7b5fb99e7c9088d">foundation_javaConnection_sim</Name>
+              <ConnType ID="3933a284db595324">AsmTicket</ConnType>
+              <ProviderUrl ID="f40c7bebdb7248ee">${cc:CRM/BillingSimulator/crm.simulator.server.url}</ProviderUrl>
+              <ConnPoolSize ID="7c2004c95abbc9d7">${cc:CRM/crm.server.poolsize:-300}</ConnPoolSize>
+              <RetryPolicy ID="f74dc80b4defd4ad">
+                <MaxRetryCount ID="5dc515f25841ce3f">3</MaxRetryCount>
+                <RetryWaitTime ID="67711d25e14c38b2">10</RetryWaitTime>
+              </RetryPolicy>
+            </Connection>
+            <Connection ID="c4f7b9082a5be860">
+              <Name ID="8fa60e38a8c350b0">TCConnection</Name>
+              <ConnType ID="59ff9489fef2b0df">AsmTicket</ConnType>
+              <ProviderUrl ID="129ea780d168bf12">${cc:integrative/ABP/tc.server.url:-${cc:integrative/ABP/abp.server.url}}</ProviderUrl>
+              <ProxyUsername ID="2ee8fa0da1ce55e4">&empty;</ProxyUsername>
+              <ProxyPassword ID="41f1e5039c28119a">&empty;</ProxyPassword>
+              <ConnPoolSize ID="8f47764524967a5a">${cc:CRM/crm.server.poolsize:-300}</ConnPoolSize>
+              <RetryPolicy ID="e31b0d4bad807cbf">
+                <MaxRetryCount ID="fda65264f0b3a632">3</MaxRetryCount>
+                <RetryWaitTime ID="a48d0d02903c422b">10</RetryWaitTime>
+              </RetryPolicy>
+            </Connection>
+            <Connection ID="23d14208afa411d2">
+              <Name ID="b342c902087da963">TCConnection_sim</Name>
+              <ConnType ID="305c5722ee3fd848">AsmTicket</ConnType>
+              <ProviderUrl ID="bc01f3dfa80dd555">${cc:CRM/BillingSimulator/crm.simulator.server.url}</ProviderUrl>
+              <ConnPoolSize ID="08b030edf0f1be78">${cc:CRM/crm.server.poolsize:-300}</ConnPoolSize>
+              <RetryPolicy ID="38b61b231c242aed">
+                <MaxRetryCount ID="83297433626ae995">3</MaxRetryCount>
+                <RetryWaitTime ID="52e1037462fdf632">10</RetryWaitTime>
+              </RetryPolicy>
+            </Connection>
+          </Connections>
+          <ExecutionMode ID="014706359f0fb120">
+            <ExectionModeServices ID="da1d873875863e92" overrideid="cb2b21bd1fc0d976">
+              <md:isarray>true</md:isarray>
+            </ExectionModeServices>
+            <ExectionModeServices ID="2a62d9b9944e9aaf" overrideid="2dae980abc4629ed">
+              <Simulation ID="6f8bdad4a6c534c9">${cc:integrative/ABP/abp.CM.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="f719b877f86af13f" overrideid="9b83dcecd3f33987">
+              <Simulation ID="8068990bd21e6af7">${cc:integrative/ABP/abp.AR.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="46d9292d153f84c1" overrideid="c7a94d9a3ee717e3">
+              <Simulation ID="9b465ce9b80671db">${cc:integrative/ABP/abp.BL.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="b94261e4a2163777" overrideid="6a1d5293ee85caa2">
+              <Simulation ID="93a441e96f71160a">${cc:integrative/ABP/abp.CL.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="fca6b55f22e5c881" overrideid="89d1f794446144a3">
+              <Simulation ID="8d7d57f7f0131927">
+                ${cc:integrative/ABP/abp.CABP.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}
+              </Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="3400b5dbe58f2221" overrideid="ff4745f82775c391">
+              <Simulation ID="80c3f0bd73b561c5">${cc:integrative/ABP/abp.CM.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="625d455b686d463b" overrideid="21d6ed2cb77cddb1">
+              <Simulation ID="ca96bdd3feee9942">${cc:integrative/ABP/tc.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="a71069324e61b00a" overrideid="a08837072677519e">
+              <Simulation ID="425ade1cf8309d36">${cc:integrative/ABP/abp.RM.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="f35b23f9ec986e3c" overrideid="c51fabf88387f636">
+              <Simulation ID="7552c1530008b0b4">${cc:integrative/ABP/abp.AR.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="cdf925a4bd39915b" overrideid="127c7c43c82ba8da">
+              <Simulation ID="1be18ee0f1e069f4">${cc:integrative/ABP/abp.AR.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="947a94a56959e96c" overrideid="77d03e80574ed94f">
+              <Simulation ID="3fcb97cdca5fae5c">${cc:integrative/ABP/abp.BL.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="d0a8f4c2b553389e" overrideid="eb26c622258c754e">
+              <Simulation ID="31841c187b37afba">${cc:integrative/ABP/abp.BL.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="743aedd0d08fbf24" overrideid="3a42a7e98e8ec612">
+              <Simulation ID="605f7f7ec9df6003">${cc:integrative/ABP/abp.BL.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="ff3f1677713d6bab" overrideid="f10b0bc7553ae654">
+              <Simulation ID="0a7af7d2ddf8f2d3">
+                ${cc:integrative/ABP/abp.RPL.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}
+              </Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="0bf04736daf1fcfe" overrideid="7c95373ba414a88d">
+              <Simulation ID="f9c5a3dc22740595">${cc:integrative/ABP/abp.BL.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="7399651abf2c1ce1" overrideid="6a3b75462402548e">
+              <Simulation ID="b9c37c3d857bffdc">${cc:integrative/ABP/abp.CM.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="f3bca4944627631a" overrideid="09518189ccd9bee7">
+              <Simulation ID="3852699c3106a9e9">${cc:integrative/ABP/abp.CL.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="62c6b2d4b1ce6439" overrideid="02c09bf394ec4f6d">
+              <Simulation ID="fff79c0e615a1354">${cc:integrative/ABP/abp.CL.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="f73cd0b340cc388f" overrideid="a3630ffe99cef71a">
+              <Simulation ID="59bb331d40feb816">${cc:integrative/ABP/abp.CM.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="7b56912c5849b3be" overrideid="60ea80443faf20c3">
+              <Simulation ID="2aae7e2b5d1ed5cf">${cc:integrative/ABP/abp.CM.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="349b28253374c7aa" overrideid="4e95d31b3d49be79">
+              <Simulation ID="3aaa6f66b1fefab0">${cc:integrative/ABP/abp.CM.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="e5bad4b6dcf0934a" overrideid="e9eab169a0e3da34">
+              <Simulation ID="d8ab3949d98c789d">${cc:integrative/ABP/abp.BL.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="161d62e1a4ae0f91" overrideid="6b93dfcd6deb89cf">
+              <Simulation ID="ecf1bbb4cbd8ef9f">${cc:integrative/ABP/tc.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="b306404220cc5eb7" overrideid="762759b80fdade4b">
+              <Simulation ID="4dc3237abb786b8f">
+                ${cc:integrative/ABP/abp.MMO.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}
+              </Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="866518c894d86adb" overrideid="6946ef8a1c37c145">
+              <Simulation ID="9e0136461fe5d915">${cc:integrative/ABP/abp.CM.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="3681c9f695092b52" overrideid="92baadab77928d32">
+              <Simulation ID="c2161f5bd5c9b50c">${cc:integrative/ABP/abp.CL.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="2e63166f1d1fede7" overrideid="3ad5663a56761300">
+              <Simulation ID="ed5943220a3d0b26">${cc:integrative/ABP/tc.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="4af4f2323f51901a" overrideid="f20d3337755813d6">
+              <Simulation ID="64163060f497c3ca">${cc:integrative/ABP/abp.CM.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="78426c9547958d93" overrideid="dd3a287bf0cdee9f">
+              <Simulation ID="b65bbbf6925dcf70">${cc:integrative/ABP/abp.BL.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="fc00c5bf09ae4438" overrideid="fe3055e12b7cf9fe">
+              <Simulation ID="ec84933bac795f70">
+                ${cc:integrative/ABP/abp.RPL.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}
+              </Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="14968f98358498aa" overrideid="f86f16bd1b7ae4b7">
+              <Simulation ID="16aace8eef08cd01">${cc:integrative/ABP/abp.RM.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="9e3deb75a4784a24" overrideid="acba71da4bec40b3">
+              <Simulation ID="5db7fd57c304f7b7">${cc:integrative/ABP/abp.CL.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="eaf3d5b6f74ae765" overrideid="e1567f94b42cea01">
+              <Simulation ID="4800dc9126bb08a7">${cc:integrative/ABP/abp.CM.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="98e59aa52ac0272f" overrideid="72d42344c88eee98">
+              <Simulation ID="e603d82b52897658">
+                ${cc:integrative/ABP/abp.RPL.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}
+              </Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="e07728eca8fca215" overrideid="6331f16cf8c94cc3">
+              <Simulation ID="559b85384488f837">${cc:integrative/ABP/abp.RM.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="5025def289eee3dc" overrideid="820c10c7f951c4ad">
+              <Simulation ID="de3f4b6d3940a2b1">${cc:integrative/ABP/abp.CM.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+            <ExectionModeServices ID="368d8a6cd8ed0ec5" overrideid="7c904b032e00908e">
+              <Simulation ID="4ed8156381f78898">${cc:integrative/ABP/abp.CM.isInstalled:-${cc:integrative/ABP/abp.isInstalled}}</Simulation>
+            </ExectionModeServices>
+          </ExecutionMode>
+        </aif>
+        <apm ID="94c1efebe27def74" closest="true">
+          <crm ID="4985565e864605a0">
+            <ApmApplication ID="373b926a96427796">
+              <Services ID="b0ce7fed22324e86">
+                <BPM_Business_Process_Manager ID="36a2daf6cd5d9a8d">
+                  <LoadFromPars ID="fe6ce97318c6d27b">false</LoadFromPars>
+                  <ParPath ID="17d01c04d301ba4d">/opt/amdocs/crm/par</ParPath>
+                  <DeployParsToDB ID="d37e1164f7dd93cd">false</DeployParsToDB>
+                </BPM_Business_Process_Manager>
+              </Services>
+            </ApmApplication>
+          </crm>
+        </apm>
+        <clarifyEnv ID="5c8d17e74f886be2">
+          <LicTrace ID="36d98eec79cd7aab">${cc:CRM/crm.log.trace:-Y}</LicTrace>
+          <Resources ID="aa320ff3cc232d2a">
+            <InboundEmail ID="4d5ed199b3747886" overrideid="1134053523968">
+              <md:isarray>true</md:isarray>
+              <Connection ID="b38bb0e22eb96af8">
+                <Password ID="04f44ae8a678d66f">
+                  <md:type>encrypted</md:type>
+                </Password>
+              </Connection>
+            </InboundEmail>
+            <OutboundEmail ID="7658d96901e8464e" overrideid="1134053524755">
+              <md:isarray>true</md:isarray>
+              <Connection ID="f5af31c69b547d74">
+                <Password ID="659fe5dd3ba3800a">
+                  <md:type>encrypted</md:type>
+                </Password>
+              </Connection>
+            </OutboundEmail>
+          </Resources>
+          <WebsphereTrustedUserPassword ID="bea67cc2277e8b92">
+            <md:type>encrypted</md:type>
+          </WebsphereTrustedUserPassword>
+          <SelfServiceAssociatedUsers ID="e8a1cc74ee91a340">
+            <AssociatedUserMap ID="3537a931c0afd04f" overrideid="a3a87b025a0a054a">
+              <md:isarray>true</md:isarray>
+            </AssociatedUserMap>
+            <AssociatedUserMap ID="07723adc03bc7439">
+              <Key ID="b87da274eb660b24">CustomerRetrieve</Key>
+              <Agent ID="737ddc06041d9155">sa</Agent>
+            </AssociatedUserMap>
+            <AssociatedUserMap ID="257e9628b0178cc2">
+              <Key ID="47422834415823a3">NotifyCRM</Key>
+              <Agent ID="1a871ea0aa5dbd75">sa</Agent>
+            </AssociatedUserMap>
+          </SelfServiceAssociatedUsers>
+          <createSessFromTicketForPredefASMCache ID="6c113c4d3dfd29d5">
+            <md:type>boolean</md:type>
+            <md:display>createSessFromTicketForPredefASMCache</md:display>
+            <md:description>Enable this flag if you wish to generate session from Ticket instead of ID(for predefuser) when ASM Ticket cache is enabled,to avoid DbChannel error</md:description>
+            true
+          </createSessFromTicketForPredefASMCache>
+          <Db_QueryTimeOutSec ID="5c8d17e74f886be3">15</Db_QueryTimeOutSec>
+        </clarifyEnv>
+        <servlets ID="0fdb17b03a46afdc">
+          <PMServlet ID="cca9a39f567e5350">
+            <password ID="f1750a03280d0e66">
+              <md:type>encrypted</md:type>
+            </password>
+          </PMServlet>
+          <AutodestServlet ID="95a94b2935ac22f4">
+            <db_password ID="eb8dd27f995ed3af">
+              <md:type>encrypted</md:type>
+            </db_password>
+            <rule_type ID="e85800cf9bbd2824">${cc:CRM/crm.autodest.ruletype:-classic}</rule_type>
+          </AutodestServlet>
+        </servlets>
+        <uif ID="7bdae585329cc42f">
+          <requestBlackList ID="3068dc95151f28e3" overrideid="89b0559e69ace705">
+            <md:isarray>true</md:isarray>
+          </requestBlackList>
+          <requestBlackList ID="3fd814055d2ce0cf" overrideid="c03f64f081906ce4" removed="" />
+          <requestBlackList ID="5ae1e6af80c302ec" overrideid="c03f64f081906ce5" removed="" />
+          <requestBlackList ID="38ab9e58bab4fd62" overrideid="c03f64f081906cw5" removed="" />
+          <requestBlackList ID="c399b9a09ede2726" overrideid="c03f64f081906cw6" removed="" />
+          <requestBlackList ID="db2b02a5b6efb7d5">
+            <regularExpression ID="d215b161690fba29">&lt;/script&gt;</regularExpression>
+          </requestBlackList>
+          <requestBlackList ID="66a9a00925ce9c13">
+            <regularExpression ID="9ff660ef6290b8e5">&lt;h&gt;</regularExpression>
+          </requestBlackList>
+        </uif>
+        <widgetEnablement ID="6c6758305e5b7054">
+          <proxyUserPassword ID="7e7dfc289eb8d62d">
+            <md:type>encrypted</md:type>
+          </proxyUserPassword>
+        </widgetEnablement>
+      </baseConfig>
+    </crm>
+    <md:customize>../core</md:customize>
+  </customization>
+</AmdocsConfig>
+

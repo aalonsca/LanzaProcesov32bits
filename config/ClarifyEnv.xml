@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClarifyEnv formatVersion="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<!--
+        Configurable Resources for Server Action Manager
+        ================================================
+     	-->
+	<ExternalAuthentication class="test.sam.TestLDAPLoginModule" clarify_login_name_key="ClarifyUserName">
+		<LoginModule LDAP_HOSTNAME="localhost" LDAP_PORT="48900"/>
+	</ExternalAuthentication>
+	<!--
+	Configurable request types
+	==============================
+	-->
+	<!--ClfySessionRequestTypes>
+	    <RequestType  name="Default"
+			  MaxConncurrentRequestCount="1"
+			  MaxWaitTimeInSecs="-1"
+	     />
+	    <RequestType  name="LongRunning"
+			  MaxConncurrentRequestCount="1"
+			  MaxWaitTimeInSecs="-1"
+	     />
+	    <RequestType  name="ShortRunning"
+			  MaxConncurrentRequestCount="2"
+			  MaxWaitTimeInSecs="-1"
+	     />
+	</ClfySessionRequestTypes-->
+	<!--
+	DataMapper configuration
+	=====================
+	-->
+	<!--DataMapper dataMapValidation="true">
+		<DatamapInitializationFiles>
+			<File name="clfy_datamaps_ig_bm_abp.xml"/>
+			<File name="cih_datamaps_ig_bm_abp.xml"/>			
+			<File name="clfy_datamaps_ig_cl_abp.xml"/>
+			<File name="clfy_datamaps_ig_omse_abp.xml"/>
+			<File name="clfy_datamaps_ig_sales_abp.xml"/>
+		</DatamapInitializationFiles>
+	</DataMapper-->
+	<Resources>
+		<!--
+		 Examples of EJB configuration (mOrder EJB configuration version 13.0)
+		 ==============================
+		-->
+		<ContainerManagedJdbc name="MyCMJdbcResource" jdbc_hosttype="com.clarify.cb2ejb.WlsGeneric" jndi_name="MyJDBC Data Source-1" jndi_initialcontext="weblogic.jndi.WLInitialContextFactory">
+			<Connection HostId="t3://localhost:7001" ConnType="Global" Password="password" Username="system" GlobalConnPoolSize="10" PrivateConnTimeout="10"/>
+		</ContainerManagedJdbc>
+		<LocalJdbc name="MyLocalJdbcResource" conn_url="jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=orion;SelectMethod=Cursor" jdbc_driver="com.microsoft.jdbc.sqlserver.SQLServerDriver">
+			<Connection Password="freshen" Username="sa"/>
+		</LocalJdbc>
+		<EJB name="CM" ejb_HostType="com.clarify.cb2ejb.WlsGeneric" ejb_UAMS_url="">
+			<Connection Username="system" Password="password" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y " HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.csm3g.sessions.interfaces.api.SubscriberServices" jndi-name="amdocsBeans.CM1SubscriberServicesHome" home-class="amdocs.csm3g.sessions.interfaces.home.SubscriberServicesHome"/>
+				<jndi-info remote-class="amdocs.csm3g.sessions.interfaces.api.AgreementServices" jndi-name="amdocsBeans.CM1AgreementServicesHome" home-class="amdocs.csm3g.sessions.interfaces.home.AgreementServicesHome"/>
+				<jndi-info remote-class="amdocs.csm3g.sessions.interfaces.api.ProductCatalogServices" jndi-name="amdocsBeans.CM1ProductCatalogServicesHome" home-class="amdocs.csm3g.sessions.interfaces.home.ProductCatalogServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="RM" ejb_HostType="com.clarify.cb2ejb.WlsGeneric" ejb_UAMS_url="">
+			<Connection Username="system" Password="password" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y " HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.rm3g.urm.sessions.interfaces.api.ResourceManager" jndi-name="amdocsBeans.RM1ResourceManagerHome" home-class="amdocs.rm3g.urm.sessions.interfaces.home.ResourceManagerHome"/>
+				<jndi-info remote-class="amdocs.rm3g.urm.sessions.interfaces.api.PackageManager" jndi-name="amdocsBeans.RM1PackageManagerHome" home-class="amdocs.rm3g.urm.sessions.interfaces.home.PackageManagerHome"/>
+				<jndi-info remote-class="amdocs.rm3g.urm.sessions.interfaces.api.ApplManagerConv" jndi-name="amdocsBeans.RM1ApplManagerConvHome" home-class="amdocs.rm3g.urm.sessions.interfaces.home.ApplManagerConvHome"/>
+				<jndi-info remote-class="amdocs.rm3g.urm.sessions.interfaces.api.RefDataManager" jndi-name="amdocsBeans.RM1RefDataManagerHome" home-class="amdocs.rm3g.urm.sessions.interfaces.home.RefDataManagerHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="BL" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="password" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y " HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.bl3g.sessions.interfaces.api.ChargeServices" jndi-name="amdocsBeans.BL1ChargeServicesBean" home-class="amdocs.bl3g.sessions.interfaces.home.ChargeServicesHome"/>
+				<jndi-info remote-class="amdocs.bl3g.sessions.interfaces.api.QuotationServices" jndi-name="amdocsBeans.BL1QuotationServicesBean" home-class="amdocs.bl3g.sessions.interfaces.home.QuotationServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<!--End of mOrder EJB configuration version 13.0-->
+		<!--           >>>> start of BM-III BillingAdapter SAM configuration <<<<               -->
+		<!-- generic services begin -->
+		<EJB name="billing-generic" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="com.clarify.billingmanager.simulator.genericsimulator.simbilling.Billing" jndi-name="acm.GenBilling" home-class="com.clarify.billingmanager.simulator.genericsimulator.simbilling.BillingHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="collection" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="com.clarify.billingmanager.simulator.genericsimulator.simcollectionbilling.CollectionBilling" jndi-name="acm.GenCollection" home-class="com.clarify.billingmanager.simulator.genericsimulator.simcollectionbilling.CollectionBillingHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="pps" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="com.clarify.billingmanager.simulator.genericsimulator.simpps.PPS" jndi-name="acm.GenPPS" home-class="com.clarify.billingmanager.simulator.genericsimulator.simpps.PPSHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="ep" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="com.clarify.billingmanager.simulator.genericsimulator.simep.EP" jndi-name="acm.GenEP" home-class="com.clarify.billingmanager.simulator.genericsimulator.simep.EPHome"/>
+			</jndi-names>
+		</EJB>
+		<!-- generic services end -->
+		<!-- acm services begin -->
+		<!-- BF Module -->
+		<EJB name="bf-bill-image" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="com.amdocs.billformatter.apis.sessions.remote.IBFBillImageRemote" jndi-name="IBFBillImageHome" home-class="com.amdocs.billformatter.apis.sessions.home.IBFBillImageHome"/>
+			</jndi-names>
+		</EJB>
+		<!-- END BF Module -->
+		<!-- Billing Module -->
+		<EJB name="bl-document-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.bl3g.sessions.interfaces.api.DocumentServices" jndi-name="amdocsBeans.BL1DocumentServicesBean" home-class="amdocs.bl3g.sessions.interfaces.home.DocumentServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="bl-charge-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y " HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.bl3g.sessions.interfaces.api.ChargeServices" jndi-name="amdocsBeans.BL1ChargeServicesBean" home-class="amdocs.bl3g.sessions.interfaces.home.ChargeServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<!-- bl-customer-services NOT IN USE ANYMORE 27-Sep-2004 -->
+		<EJB name="bl-customer-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.bl3g.sessions.interfaces.api.CustomerServices" jndi-name="amdocsBeans.BL1CustomerServicesBean" home-class="amdocs.bl3g.sessions.interfaces.home.CustomerServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="bl-billing-arrangement-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.bl3g.sessions.interfaces.api.BillingArrangementServices" jndi-name="amdocsBeans.BL1BillingArrangementServicesBean" home-class="amdocs.bl3g.sessions.interfaces.home.BillingArrangementServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="bl-billondemand-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.bl3g.sessions.interfaces.api.BillOnDemandServices" jndi-name="amdocsBeans.BL1BillOnDemandServicesBean" home-class="amdocs.bl3g.sessions.interfaces.home.BillOnDemandServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<!-- END Billing Module -->
+		<!-- AR Module -->
+		<EJB name="ar-payment-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.ar.sessions.interfaces.api.ARPaymentServices" jndi-name="ARBeans.ARPaymentServices" home-class="amdocs.ar.sessions.interfaces.home.ARPaymentServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="ar-account-statement" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.ar.sessions.interfaces.api.ARBIRAccountStatement" jndi-name="amdocsBeans.ARBIRAccountStatement" home-class="amdocs.ar.sessions.interfaces.home.ARBIRAccountStatementHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="ar-account-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.ar.sessions.interfaces.api.ARBIRAccountServices" jndi-name="amdocsBeans.ARBIRAccountServices" home-class="amdocs.ar.sessions.interfaces.home.ARBIRAccountServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="ar-dispute-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.ar.sessions.interfaces.api.ARBIRDisputeServices" jndi-name="amdocsBeans.ARBIRDisputeServices" home-class="amdocs.ar.sessions.interfaces.home.ARBIRDisputeServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="arbir-credit-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.ar.sessions.interfaces.api.ARBIRCreditServices" jndi-name="amdocsBeans.ARBIRCreditServices" home-class="amdocs.ar.sessions.interfaces.home.ARBIRCreditServicesHome"/>
+			</jndi-names>
+		</EJB>		
+		<EJB name="ar-credit-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.ar.sessions.interfaces.api.ARCreditServices" jndi-name="ARBeans.ARCreditServices" home-class="amdocs.ar.sessions.interfaces.home.ARCreditServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="ar-charge-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.ar.sessions.interfaces.api.ARChargeServices" jndi-name="ARBeans.ARChargeServices" home-class="amdocs.ar.sessions.interfaces.home.ARChargeServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="ar-invoice-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.ar.sessions.interfaces.api.ARInvoiceServices" jndi-name="ARBeans.ARInvoiceServices" home-class="amdocs.ar.sessions.interfaces.home.ARInvoiceServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="ar-deposit-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.ar.sessions.interfaces.api.ARBIRDepositServices" jndi-name="ARBeans.ARBIRDepositServices" home-class="amdocs.ar.sessions.interfaces.home.ARBIRDepositServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="ar-reference-data-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.ar.sessions.interfaces.api.ARBIRReferenceDataServices" jndi-name="ARBeans.ARBIRReferenceDataServices" home-class="amdocs.ar.sessions.interfaces.home.ARBIRReferenceDataServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<!-- END AR Module -->
+		<!-- CM Module -->
+		<EJB name="cm-ref-data-mngr" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.csm3g.sessions.interfaces.api.RefDataMngr" jndi-name="amdocsBeans.CM1RefDataMngrHome" home-class="amdocs.csm3g.sessions.interfaces.home.RefDataMngrHome"/>
+			</jndi-names>
+		</EJB>
+		<!-- cm-customer-hierarchy-services - SEEMS LIKE IT IS BEING USED BY OMSE -->
+		<EJB name="cm-customer-hierarchy-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.csm3g.sessions.interfaces.api.CustomerHierarchyServices" jndi-name="amdocsBeans.CM1CustomerHierarchyServicesHome" home-class="amdocs.csm3g.sessions.interfaces.home.CustomerHierarchyServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="cm-subscriber-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y " HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.csm3g.sessions.interfaces.api.SubscriberServices" jndi-name="amdocsBeans.CM1SubscriberServicesHome" home-class="amdocs.csm3g.sessions.interfaces.home.SubscriberServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="cm-distribution-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.csm3g.sessions.interfaces.api.DistributionServices" jndi-name="amdocsBeans.CM1DistributionServicesHome" home-class="amdocs.csm3g.sessions.interfaces.home.DistributionServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="cm-update-name-address" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y " HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.csm3g.sessions.interfaces.api.UpdateNameAddress" jndi-name="amdocsBeans.CM1UpdateNameAddressHome" home-class="amdocs.csm3g.sessions.interfaces.home.UpdateNameAddressHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="cm-pay-channel-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y " HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.csm3g.sessions.interfaces.api.PayChannelServices" jndi-name="amdocsBeans.CM1PayChannelServicesHome" home-class="amdocs.csm3g.sessions.interfaces.home.PayChannelServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="cm-account-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.csm3g.sessions.interfaces.api.AccountServices" jndi-name="amdocsBeans.CM1AccountServicesHome" home-class="amdocs.csm3g.sessions.interfaces.home.AccountServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="cm-customer-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.csm3g.sessions.interfaces.api.CustomerServices" jndi-name="amdocsBeans.CM1CustomerServicesHome" home-class="amdocs.csm3g.sessions.interfaces.home.CustomerServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="cm-csm-billing-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.csm3g.sessions.interfaces.api.CsmBillingServices" jndi-name="amdocsBeans.CM1CsmBillingServicesHome" home-class="amdocs.csm3g.sessions.interfaces.home.CsmBillingServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="cm-billing-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.csm3g.sessions.interfaces.api.BillingArrangementServices" jndi-name="amdocsBeans.CM1BillingArrangementServicesHome" home-class="amdocs.csm3g.sessions.interfaces.home.BillingArrangementServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="cm-collection-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.csm3g.sessions.interfaces.api.CmCollectionServices" jndi-name="amdocsBeans.CM1CmCollectionServicesHome" home-class="amdocs.csm3g.sessions.interfaces.home.CmCollectionServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<!-- END CM Module -->
+		<!-- RPL Module -->
+		<EJB name="rpl-recharge-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.rpm.sessions.interfaces.api.RPL1RechargeServices" jndi-name="amdocsBeans.RPL1RechargeServicesHome" home-class="amdocs.rpm.sessions.interfaces.home.RPL1RechargeServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="rpl-bucket-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric" ejb_UAMS_url="">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.rpm.sessions.interfaces.api.RPL1BucketServices" jndi-name="amdocsBeans.RPL1BucketServicesHome" home-class="amdocs.rpm.sessions.interfaces.home.RPL1BucketServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="rpl-reference-query-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.rpm.sessions.interfaces.api.RPL1ReferenceQueryServices" jndi-name="amdocsBeans.RPL1ReferenceQueryServicesHome" home-class="amdocs.rpm.sessions.interfaces.home.RPL1ReferenceQueryServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<!-- END RPL Module -->
+		<!-- Rater (RPR) Module -->
+		<EJB name="rpr-performance-indicator-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.rpr.sessions.interfaces.api.PerformanceIndicatorServices" jndi-name="amdocsBeans.RPR1PerformanceIndicatorServicesHome" home-class="amdocs.rpr.sessions.interfaces.home.PerformanceIndicatorServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="rpr-event-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.rpr.sessions.interfaces.api.EventServices" jndi-name="amdocsBeans.RPR1EventServicesHome" home-class="amdocs.rpr.sessions.interfaces.home.EventServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<!-- END Rater (RPR) Module -->
+		<!-- Collection (CL) Module -->
+		<EJB name="cl-collection-activity-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.cl.sessions.interfaces.api.CL1CollectionActivityServices" jndi-name="amdocsBeans.CL1CollectionActivityServicesHome" home-class="amdocs.cl.sessions.interfaces.home.CL1CollectionActivityServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="cl-ref-data-manager" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.cl.sessions.interfaces.api.CL1RefDataMngr" jndi-name="amdocsBeans.CL1RefDataMngrHome" home-class="amdocs.cl.sessions.interfaces.home.CL1RefDataMngrHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="cl-collection-entity-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.cl.sessions.interfaces.api.CL1CollectionEntityServices" jndi-name="amdocsBeans.CL1CollectionEntityServicesHome" home-class="amdocs.cl.sessions.interfaces.home.CL1CollectionEntityServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="cl-collection-payment_arrangement-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.cl.sessions.interfaces.api.CL1PaymentArrangementServices" jndi-name="amdocsBeans.CL1PaymentArrangementServicesHome" home-class="amdocs.cl.sessions.interfaces.home.CL1PaymentArrangementServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<!-- END Collection (CL) Module -->
+		<!-- memo (MO) Module -->
+		<EJB name="mo-memo-services" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.mo.sessions.interfaces.api.MemoServices" jndi-name="amdocsBeans.MMO1MemoServicesHome" home-class="amdocs.mo.sessions.interfaces.home.MemoServicesHome"/>
+			</jndi-names>
+		</EJB>
+		<!-- END memo (MO) Module -->
+		<!-- acm services end -->
+		<!--           >>>> end of BM-III BillingAdapter SAM configuration <<<<               -->
+		<!-- An example of EJB server configuration
+            <EJB name="EJB1"
+                ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+                <Connection
+                    Username="system"
+                    Password="password"
+                    Domain=""
+                    ConnType="Global"
+                    GlobalConnPoolSize="20"
+                    HostId="t3://localhost:7001"
+                    PrivateConnTimeout="10"
+                />
+            </EJB > -->
+		<!-- Start of Analytics EJB configuration-->
+		<EJB name="AnalyticsOLEJB" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="20" HostId="t3://localhost:7001" InitialContextFactory="weblogic.jndi.WLInitialContextFactory" PrivateConnTimeout="10"/>
+		</EJB>
+		<!-- end of Analytics EJB configuration-->
+		<!-- Start of Process Manager EJB Configuration-->
+		<EJB name="ProcessManagerEjb" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Domain="" HostId="t3://opedes71:7601,opedes71:7602,opedes71:7603,opedes71:7604" ConnType="Global" Password="weblogic" Username="weblogic" GlobalConnPoolSize="10" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info remote-class="com.clarify.procmgr.ejb.ProcessManagerRemote" jndi-name="ProcessManagerHome" home-class="com.clarify.procmgr.ejb.ProcessManagerHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="AmdocsProcessManagerLocalEjb" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Domain="" HostId="t3://localhost:7001" ConnType="Global" Password="weblogic" Username="weblogic" GlobalConnPoolSize="10" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info jndi-name="/crm/amdocs/bpm/ejb/ProcMgrSessionLocal" remote-class="amdocs.bpm.ejb.ProcMgrSessionLocal" home-class="amdocs.bpm.ejb.ProcMgrSessionLocalHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="AmdocsProcessManagerRemoteEjb" ejb_HostType="com.clarify.cb2ejb.WlsGeneric">
+			<Connection Domain="" HostId="t3://localhost:7001" ConnType="Global" Password="weblogic" Username="weblogic" GlobalConnPoolSize="10" PrivateConnTimeout="10"/>
+			<jndi-names>
+				<jndi-info jndi-name="/crm/amdocs/bpm/ejb/ProcMgrSession" remote-class="amdocs.bpm.ejb.ProcMgrSession" home-class="amdocs.bpm.ejb.ProcMgrSessionHome"/>
+			</jndi-names>
+		</EJB>
+		<!-- End of Process Manager EJB Configuration-->
+		<!--
+		 Examples of JMS Topic configuration
+		 ==============================
+		-->
+		<JMSTopic name="Topic1" jms_connectionfactory="gwqcf" jms_destination="clfyqin" jms_jndi_initialcontext="weblogic.jndi.WLInitialContextFactory" receiver="y" sender="y">
+			<Connection Username="system" Password="password" Domain="" ConnType="Global" GlobalConnPoolSize="20" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+		</JMSTopic>
+		<JMSTopic name="Topic2" jms_connectionfactory="gwqcf" jms_destination="clfyqout" jms_jndi_initialcontext="weblogic.jndi.WLInitialContextFactory" receiver="y" sender="y">
+			<Connection Username="system" Password="password" Domain="" ConnType="Global" GlobalConnPoolSize="20" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+		</JMSTopic>
+		<!--
+		Examples of JMS Queue configuration
+		===============================
+		-->
+		<JMSQueue name="Queue1" jms_connectionfactory="gwqcf" jms_destination="clfyqin" jms_jndi_initialcontext="weblogic.jndi.WLInitialContextFactory" receiver="y" sender="y">
+			<Connection Username="system" Password="password" Domain="" ConnType="Global" GlobalConnPoolSize="20" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+		</JMSQueue>
+		<JMSQueue name="Queue2" jms_connectionfactory="gwqcf" jms_destination="clfyqout" jms_jndi_initialcontext="weblogic.jndi.WLInitialContextFactory" receiver="y" sender="y">
+			<Connection Username="system" Password="password" Domain="" ConnType="Global" GlobalConnPoolSize="20" HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+		</JMSQueue>
+		<!-- mOrder to Provisioning system -->
+		<JMSQueue name="mOrder2Provisioning" sender="y" receiver="n" jms_connectionfactory="weblogic.jms.ConnectionFactory" jms_destination="Clarify2Provisioning" jms_jndi_initialcontext="weblogic.jndi.WLInitialContextFactory" jms_ack_mode="AUTO" jms_msg_deliverymode="PERSISTENT">
+			<Connection Username="system" Password="password" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y " HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+		</JMSQueue>
+		<!-- mOrder to Fulfillment system -->
+		<JMSQueue name="mOrder2Fulfillment" sender="y" receiver="n" jms_connectionfactory="weblogic.jms.ConnectionFactory" jms_destination="Clarify2Fulfillment" jms_jndi_initialcontext="weblogic.jndi.WLInitialContextFactory" jms_ack_mode="AUTO" jms_msg_deliverymode="PERSISTENT">
+			<Connection Username="system" Password="password" Domain="" ConnType="Global" GlobalConnPoolSize="20" AuthenticationRequired="y " HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+		</JMSQueue>
+		<!-- Analytics2 JMS Queues configuration -->
+		<JMSQueue name="Clarify2Analytics" sender="y" receiver="n" jms_connectionfactory="weblogic.jms.ConnectionFactory" jms_destination="Clarify2Analytics" jms_jndi_initialcontext="weblogic.jndi.WLInitialContextFactory" jms_ack_mode="AUTO" jms_msg_deliverymode="PERSISTENT">
+			<Connection Username="system" Password="12345678" Domain="" ConnType="Global" GlobalConnPoolSize="5" AuthenticationRequired="y " HostId="t3://localhost:7001" PrivateConnTimeout="10"/>
+		</JMSQueue>
+		<!-- end of Analytics2 JMS Queues configuration -->
+		<!-- Start of Process Manager Queue Configuration -->
+		<JMSQueue name="ProcManagerQueue" sender="y" receiver="n" jms_destination="clarify.procmgr.jms.queue.Execution" jms_connectionfactory="clarify.procmgr.jms.factories.ExecConnection" jms_jndi_initialcontext="weblogic.jndi.WLInitialContextFactory">
+			<Connection Domain="" HostId="t3://opedes71:7601,opedes71:7602,opedes71:7603,opedes71:7604" ConnType="Global" Password="weblogic" Username="weblogic" GlobalConnPoolSize="20" PrivateConnTimeout="10"/>
+		</JMSQueue>
+		<!-- End of Process Manager Queue Configuration -->
+		<!--
+		 Examples of InboundEmail  configuration
+		 ==============================
+		-->
+		<InboundEmail name="InboundCase" PollingInterval="3000" MaximumPollingNumber="10" PMProcess="InboundEmailHandler" PMProcessVersion="0" OutboundResourceName="OutboundEmail.OutboundService" Routing="0" SendAutoConfirmation="true" RepeatIfFailed="600" RepeatTimes="10" FormatFile="C:/EmailManager/FormatFile.xml" TrackingObjRegExp="&lt;CASE:(.*)&gt;" DBObjectName="case" ObjectBo="com.clarify.cbo.Case" EmailTemplateFile="C:/EmailManager/OutboundEmailTemplate.xml" AdminNotificationAction="AdminNotification" UserFormatNotificationAction="CaseUserFormatNotification" AutoConfirmationAction="CaseAutoConfirmation" SendNotificationsTo="admin@work.com" ReplyToAddress="replyto@domain.com" ExcludeAttachmentsWithExt="vcf">
+			<Connection Username="user" Password="password" Domain="" ConnType="Global" GlobalConnPoolSize="20" HostId="pop3://server:110" PrivateConnTimeout="10" ExternAuthUserNameKey="" ExternAuthPasswordKey=""/>
+		</InboundEmail>
+		<InboundEmail name="InboundCR" PollingInterval="3000" MaximumPollingNumber="30" PMProcess="InboundEmailHandler" PMProcessVersion="0" OutboundResourceName="OutboundEmail.OutboundService" Routing="0" SendAutoConfirmation="true" RepeatIfFailed="600" RepeatTimes="10" FormatFile="C:/EmailManager/FormatFile.xml" TrackingObjRegExp="&lt;CR:(.*)&gt;" DBObjectName="bug" ObjectBo="com.clarify.jbo.ChangeRequestJBO" EmailTemplateFile="C:/EmailManager/OutboundEmailTemplate.xml" AdminNotificationAction="AdminNotification" UserFormatNotificationAction="BugUserFormatNotification" AutoConfirmationAction="BugAutoConfirmation" SendNotificationsTo="admin@work.com" ReplyToAddress="replyto@domain.com" ExcludeAttachmentsWithExt="vcf">
+			<Connection Username="user" Password="password" Domain="" ConnType="Global" GlobalConnPoolSize="20" HostId="pop3://server:110" PrivateConnTimeout="10" ExternAuthUserNameKey="" ExternAuthPasswordKey="" PortId="110"/>
+		</InboundEmail>
+		<!--
+		 Examples of OutboundEmail configuration
+		 ==============================
+		-->
+		<OutboundEmail name="OutboundService">
+			<Connection Username="user" Password="password" Domain="" ConnType="Global" GlobalConnPoolSize="20" HostId="smtp://server:25" PrivateConnTimeout="10" ExternAuthUserNameKey="" ExternAuthPasswordKey=""/>
+		</OutboundEmail>
+		<!--
+		 Configurable Resource for CAC connector type "Socket"
+		 ==============================================
+		-->
+		<Socket name="CSM">
+			<Connection HostId="//localhost:1500" listener="8686"/>
+		</Socket>
+		<!--
+		 Default Tuxedo service for Process Manager
+		 ====================================
+		 -->
+		<Tux name="Default" jolt_user_role="clarify" jolt_application_password="clarify" clarify_FDServer="Y">
+			<Connection Username="sa" Password="sa" Domain="" ConnType="Global" GlobalConnPoolSize="20" HostId="//localhost:48801" PrivateConnTimeout="10"/>
+		</Tux>
+		<!--  An example of Tuxedo configuration call MyTuxService -->
+		<Tux name="MyTuxService" jolt_user_role="clarify" jolt_application_password="clarify" clarify_FDServer="Y">
+			<Connection Username="sa" Password="freshen" Domain="" ConnType="Global" GlobalConnPoolSize="20" HostId="&lt;machine_name>:49080" PrivateConnTimeout="10" ExternAuthUserNameKey="" ExternAuthPasswordKey=""/>
+		</Tux>
+	</Resources>
+      <OrderingResources>
+		<!-- Ordering Login -->
+		<EJB name="OmsLoginEJB">
+			<Connection AppServer="weblogic_8" HostId="t3://localhost:7001" Username="Dummy" Password="Dummy" TrustedUsername="" TrustedPassword=""/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.oms.api.ui.LoginEJB" jndi-name="/omsserver_weblogic_8/LoginService" home-class="amdocs.oms.api.ui.LoginEJBHome"/>
+			</jndi-names>
+		</EJB>
+		<EJB name="All">
+			<Connection AppServer="weblogic_8" HostId="t3://localhost:7001" Username="Dummy" Password="Dummy" TrustedUsername="" TrustedPassword=""/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.oms.api.ui.All" jndi-name="/omsserver_weblogic_8/amdocs/oms/api/ui/All" home-class="amdocs.oms.api.ui.AllHome"/>
+			</jndi-names>
+		</EJB>
+		<!-- Search Utility -->
+		<EJB name="SearchInterface">
+			<Connection AppServer="weblogic_8" HostId="t3://localhost:7001" Username="Dummy" Password="Dummy" TrustedUsername="" TrustedPassword=""/>
+			<jndi-names>
+				<jndi-info remote-class="amdocs.oms.api.ui.SearchInterface" jndi-name="/omsserver_weblogic_8/amdocs/oms/api/ui/SearchInterface" home-class="amdocs.oms.api.ui.SearchInterfaceHome"/>
+			</jndi-names>
+		</EJB>
+		<!-- Search Utility -->		
+	</OrderingResources>	
+	<!--
+       XML Gate way configuration
+       ==========================
+       -->
+	<XMLGateway version="2" bean_packages="com.clarify.isales.action.loadbean,com.clarify.isales.account.loadbean,                     com.clarify.isales.opp.loadbean,com.clarify.isales.lead.loadbean,                     com.clarify.isales.action.savebean,com.clarify.isales.account.savebean,com.clarify.isales.opp.savebean,                     com.clarify.isales.lead.savebean,com.clarify.billing.savebean,                     com.clarify.isupport.kcase.loadbean,com.clarify.isupport.kcase.savebean,com.clarify.isupport.contact.loadbean,                     com.clarify.isupport.contact.savebean,com.clarify.isupport.contract.loadbean,com.clarify.isupport.contract.savebean,                     com.clarify.isupport.common.log.loadbean,com.clarify.isupport.common.log.savebean,com.clarify.isupport.solution.loadbean,                     com.clarify.isupport.servicepartinstall.loadbean,com.clarify.isupport.sitepartinstall.loadbean,                     com.clarify.morder.productcatalogue.product.savebean,com.clarify.morder.productcatalogue.product.loadbean,                     com.clarify.morder.order.capture.loadbean,com.clarify.morder.order.capture.savebean,                     com.clarify.iadmin.queue.loadbean,com.clarify.iadmin.queue.savebean,                     com.clarify.iadmin.user.savebean,com.clarify.iadmin.user.loadbean" cbo_def_psswd="sa" cbo_def_username="sa">
+		<Resource name="Queue1" sender="Queue2" disable_authorization="true" validate="n" xslt_dir="e:\Temp" partner_id="Cingular" cbo_password="sa" cbo_username="sa" transformers="com.clarify.JmsTest.FirstIPreProcessor, com.clarify.JmsTest.SecondIPreProcessor, com.clarify.JmsTest.ThirdIPreProcessor"/>
+		<Resource name="Topic1" disable_authorization="true" sender="Topic2"/>
+	</XMLGateway>
+	<!--BM2 XML Gateway configuration to use MDDT processor - catch ACK from external systems -->
+	<!-- Remark MDDT Configuration for BM3 - not supproted anymore
+	<XMLGateway version="2" cbo_def_username="sa" cbo_def_psswd="freshen" bean_packages="com.clarify.isales.action.loadbean,com.clarify.isales.account.loadbean,
+                com.clarify.isales.opp.loadbean,com.clarify.isales.lead.loadbean,                com.clarify.isales.action.savebean,com.clarify.isales.account.savebean,com.clarify.isales.opp.savebean,com.clarify.isales.lead.savebean,com.clarify.billing.savebean,
+                com.clarify.common.search,com.clarify.common.countrystate,com.clarify.isupport.address.savebean,  com.clarify.isupport.address.loadbean,com.clarify.isupport.site.loadbean,com.clarify.isupport.site.savebean,com.clarify.isupport.kcase.loadbean,com.clarify.isupport.kcase.savebean,com.clarify.isupport.contact.loadbean,com.clarify.isupport.contact.savebean,com.clarify.isupport.contract.loadbean,com.clarify.isupport.contract.savebean,com.clarify.isupport.common.log.loadbean,com.clarify.isupport.common.log.savebean,com.clarify.isupport.solution.loadbean,com.clarify.isupport.servicepartinstall.loadbean,com.clarify.isupport.sitepartinstall.loadbean,com.clarify.morder.productcatalogue.product.savebean,com.clarify.morder.productcatalogue.product.loadbean,com.clarify.morder.order.capture.loadbean,com.clarify.morder.order.capture.savebean,com.clarify.iadmin.queue.loadbean,com.clarify.iadmin.queue.savebean,com.clarify.iadmin.user.savebean,com.clarify.iadmin.user.loadbean">
+     -->
+	<!-- configure XML Gateway (IGW) to listen for incoming messages from the billing system.
+		set transformers class name, separated with comma.-->
+	<!--
+		<Resource name="Billing2Clarify" transformers="com.clarify.billingmanager.events.mddt.MddtDispatcherTrans,com.clarify.billingmanager.eventsBM.MddtProcTransBM">
+	-->
+	<!-- Set the configuration map to be sent to the preprocessors on the init method.-->
+	<!--
+			<config_map transformer_dispatcher_metadata_file_name="mddt_dispatcher_metadata.xml" transformer_dispatcher_validation_file_name="mddt_transformer_dispatcher.dtd" validate_transformer_dispatcher="no" transformer_processor_metadata_file_name="mddt_processor_metadata.xml" transformer_processor_validation_file_name="mddt_transformer_processor.dtd" validate_transformer_processor="yes"/>
+		</Resource>
+	</XMLGateway>
+	-->
+	<!-- End of BM2 Gateway configuration-->
+	<!--
+       Process Manager Configuration
+       =============================
+    	-->
+	<ProcessManager>
+		<!--
+	     Number of seconds that the StatusKeeper will sleep
+	     between database queries Default is 10 seconds
+		-->
+		<StatusPollTime>10</StatusPollTime>
+		<!--
+		DependentFieldPoller polls the database looking for statisfied dependent fields
+		-->
+		<DependentFieldPoller>
+			<!--
+		   The engine will attempt to poll the database every PollIntervalSeconds.
+		   -->
+			<PollIntervalSeconds>30</PollIntervalSeconds>
+			<!--
+		   The number of JVMs in a cluster that will actively do polling.
+		   -->
+			<NumPollers>1</NumPollers>
+		</DependentFieldPoller>
+		<!--
+	     YieldThreshold is used to specify the maximum steps a thread can run before
+	     it yields. If this parameter is not specified the default value is 2147483648
+		-->
+		<YieldThreshold>300</YieldThreshold>
+		<EJBContainer Resource="ProcessManagerEjb"/>
+		<ExecutionDomains>
+			<Domain name="DEFAULT" priority="4" jmsresource="ProcManagerQueue"/>
+		</ExecutionDomains>
+		<JMSPriorities>
+			<Priority name="P4" yieldthreshold="300"/>
+		</JMSPriorities>
+	</ProcessManager>
+	
+	<!--
+		CRM-specific Amdocs Process Manager configuration.
+	-->
+	<AmdocsProcMgr>
+	  <ProcessMonitor base-url="http://localhost:7001/apm-mgmt/processmonitor"/>
+	</AmdocsProcMgr>
+
+
+	<!--
+       OMStandard Integration Configuration
+       =============================
+    	-->
+	<OMStandardIntegration>
+		<!-- OMStandard Integration Mode.
+		Valid Values:
+			1 - 	Connects to all external systems.
+			2 - 	No connection to external systems.
+		-->
+		<Mode>2</Mode>
+		<URMDefaultPool>12</URMDefaultPool>
+		<QuotationOrigin>OMSE</QuotationOrigin>
+		<ProvisioningAppID>Prov</ProvisioningAppID>
+		<FulfillmentAppID>Ful</FulfillmentAppID>
+		<!-- OMStandard encoding for outbound transactions/XMLs -->
+		<CharSet>UTF-8</CharSet>
+	</OMStandardIntegration>
+	<!--
+	Service Simulation configuration
+	=====================
+	-->
+	<!--
+	List of services which works in Demo Mode.
+	Unmark the name of a service to simulate it.
+	All unmarked services will NOT be executed.
+	-->
+	<ServiceSimulation simulate="listed">
+		<!--<Service name="AR_createCredit"/>
+		<Service name="AR_createDispute"/>
+		<Service name="AR_createInvoiceLevelCredit"/>
+		<Service name="AR_createPayment"/>
+		<Service name="AR_searchAccountById"/>
+		<Service name="AR_searchInvoices"/>
+		<Service name="BL_createCharge"/>
+		<Service name="BL_deleteCharge"/>
+		<Service name="BF_getBillImage"/>
+		<Service name="BL_correctCharge"/>
+		<Service name="BL_deleteCharge"/>
+		<Service name="BL_getBAInformation"/>
+		<Service name="BL_getBarCycleInfo"/>
+		<Service name="BL_getCycleInfo"/>
+		<Service name="BL_getCycleListInfo"/>
+		<Service name="BL_getDocumentAccumulations"/>
+		<Service name="BL_getDocumentCharges"/>
+		<Service name="BL_getDocumentList"/>
+		<Service name="BL_listUninvoicedCharges"/>
+		<Service name="BL_setBaIndicators"/>
+		<Service name="CM_cancelBillingCycleChangeRequest"/>
+		<Service name="CM_changeBillProductionFrequency"/>
+		<Service name="CM_changeCustomerBillingCycleInfo"/>
+		<Service name="CM_changeNameAddress"/>
+		<Service name="CM_changeNameAddressWithBar"/>
+		<Service name="CM_changePaymentMethod"/>
+		<Service name="CM_changePaymentMethodWithBar"/>
+		<Service name="CM_changeSubscriberDistribution"/>
+		<Service name="CM_createBillingArrangement"/>
+		<Service name="CM_createNewAccountWithNewBar"/>
+		<Service name="CM_createNewAccountWithoutPayMeans"/>
+		<Service name="CM_createNewCustomer"/>
+		<Service name="CM_createNewPayChannel"/>
+		<Service name="CM_createNewPayChannel1"/>
+		<Service name="CM_fullCustomerSetup"/>
+		<Service name="CM_getAccountHeader"/>
+		<Service name="CM_getChargeDistributionList"/>
+		<Service name="CM_getCustomerHeader"/>
+		<Service name="CM_getDistributionListByDateRange"/>
+		<Service name="CM_getEventDistributionList"/>
+		<Service name="CM_getExtendedCustomerBillingCycleInfo"/>
+		<Service name="CM_getPayChannelHeader"/>
+		<Service name="CM_getRTCsmCycleInfoList"/>
+		<Service name="CM_getSubscriberDistribution"/>
+		<Service name="CM_getSubscriberHeader"/>
+		<Service name="CM_redirectPcnDistribution"/>
+		<Service name="CM_updateBillingArrangement"/>
+		<Service name="CM_updateBillingArrangementNameAddress"/>
+		<Service name="GENERIC_getAccountStatement"/>
+		<Service name="GENERIC_getBarHistory"/>
+		<Service name="GENERIC_getCCOLA"/>
+		<Service name="GENERIC_getCollectionInfo"/>
+		<Service name="GENERIC_getDocumentEvents"/>
+		<Service name="GENERIC_getFaHistory"/>
+		<Service name="GENERIC_getPpbHistory"/>
+		<Service name="GENERIC_getPPBStatement"/>
+		<Service name="GENERIC_getUnbilledEvents"/>
+		<Service name="GENERIC_getValidateBank"/>
+		<Service name="RPL_createCreditCardRecharge"/>
+		<Service name="RPL_createVoucherRecharge"/>
+		<Service name="RPL_getOLCBalanceInfo"/>
+		<Service name="RPL_getVoucherInfo"/>
+		<Service name="RPL_rechargeServiceIncreaseRecharge"/>
+		<Service name="RPL_rechargeUpdateExpDate"/>
+		<Service name="RPL_viewRecharges"/>
+		<Service name="RPR_getEventDetails"/>
+		<Service name="RPR_getRatedEvents"/>
+		<Service name="RPR_getRatedPerformanceIndicators"/>-->
+	</ServiceSimulation>
+	<!--
+        	Customization Center
+        	================
+    	-->
+	<CustTools>
+		<ClarifyCacheJarIncludes>
+	              ClfyAnalytics.jar;ClfyBilling.jar;ClfyBillingManager.jar;ClfyCAC.jar;ClfyCIM.jar;ClfyCommon.jar;ClfyeRM.jar;ClfyiAdmin.jar;ClfyiConfig.jar;ClfyiSupport.jar;ClfyMediaController.jar;ClfymOrder.jar;ClfyNotifier.jar;ClfyQuality.jar;ClfySales.jar;ClfyScript.jar
+		</ClarifyCacheJarIncludes>
+		<CacheJarExcludes>
+			ClfyXvo.jar
+		</CacheJarExcludes>
+		<CompileJavaCode>
+			TRUE
+		</CompileJavaCode>
+		<PackageName>
+			com.mycompany
+		</PackageName>
+		<AutoPageClassUpdate>
+		        true
+	        </AutoPageClassUpdate>
+	</CustTools>
+	<!--
+	       Email Manager Configuration
+	        ===============================
+    	-->
+	<EmailManager>
+		<TextScrubExpression>
+			<Expr name="Expr1">>* *--* *Original Message *--*</Expr>
+			<Expr name="Expr2">>* *--* *Ursprüngliche Nachricht *--*</Expr>
+			<Expr name="Expr3">>* *--* *Message d'origine *--*</Expr>
+			<Expr name="Expr4">[\n\r\f]At [^\n\r\f]*, you wrote:[\n\r\f]</Expr>
+		</TextScrubExpression>
+		<BouncedExpression>
+			<Sender>
+				<Expr name="Expr1">mail *administrator</Expr>
+				<Expr name="Expr2">postmaster</Expr>
+				<Expr name="Expr3">mail *delivery</Expr>
+				<Expr name="Expr4">mailer-daemon</Expr>
+				<Expr name="Expr5">root</Expr>
+			</Sender>
+			<Text>
+				<Expr name="Expr1">undeliverable</Expr>
+				<Expr name="Expr2">unknown  *recipient</Expr>
+				<Expr name="Expr3">user  *unknown</Expr>
+				<Expr name="Expr4">returned  *mail</Expr>
+				<Expr name="Expr5">returned  *mail</Expr>
+			</Text>
+			<OutOfOffice>
+				<Expr name="Expr1">Out of Office Auto *Reply:</Expr>
+			</OutOfOffice>
+		</BouncedExpression>
+	</EmailManager>
+	<!--
+	        Configuration for Server Managed Processes
+	        ==========================================
+    	-->
+	<ServerManagedProcesses>
+		<EmailManager>
+			<ServerNode name="myserver">
+				<Resource name="InboundCase"/>
+				<Resource name="InboundCR"/>
+			</ServerNode>
+		</EmailManager>
+		<XMLGateway>
+			<ServerNode name="myserver">
+				<Resource name="Queue1"/>
+				<Resource name="Queue2"/>
+			</ServerNode>
+		</XMLGateway>
+		<BAP version="13.1" >
+		<!-- List all the server name that runs BAP
+			myserver process statistics file name is generated in clarify/bin/BgActionProcessorLog.log
+			it can be customized to generate in the specific location by 
+			specifying the attribue "StatisticsLogFileName"
+			use StatisticsLogFileName="/mass1/clarifylogs/baplog.log" will generate log file
+			in the sepcific location with the name specified.
+			If only filename is specified, it will generate the file in a directory where java command starts.
+			Specify the complete path with filename.
+		-->
+			<ServerNode name="myserver" />
+		</BAP>
+	      <EP version="13.1" >
+		<ServerNode name="myserver"  options="">
+			<Publisher name="pub1"/>
+			<Publisher name="pub2"/>
+		</ServerNode>
+		<ServerNode name="myserver2"  options="">
+			<Publisher name="pub3"/>
+			<Publisher name="pub4"/>
+		</ServerNode>
+	      </EP>
+	</ServerManagedProcesses>
+</ClarifyEnv>
