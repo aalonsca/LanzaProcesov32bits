@@ -4,6 +4,7 @@ package es.neoris.operations;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -17,6 +18,10 @@ import java.util.UUID;
 import javax.ejb.EJBHome;
 import javax.naming.InitialContext;
 import javax.rmi.PortableRemoteObject;
+import javax.xml.namespace.QName;
+import javax.xml.ws.Service;
+
+import org.apache.axis.EngineConfiguration;
 
 import com.amdocs.cih.common.core.MaskInfo;
 import com.amdocs.cih.common.core.sn.ApplicationContext;
@@ -27,10 +32,11 @@ import com.clarify.cbo.Application;
 import com.clarify.cbo.Session;
 import com.clarify.cbo.UamsHelper;
 
+import es.neoris.operations.loginServices.LoginServicesBindingStub;
+import es.neoris.operations.loginServices.LoginServicesLocator;
 import es.neoris.operations.oms.createSession.CreateSession;
 import es.neoris.operations.oms.launchOrder.LaunchOrder;
 import es.neoris.operations.oms.retrieveOrder.RetrieveOrder;
-
 
 
 /**
@@ -45,14 +51,19 @@ public class BaseAIF {
 	protected static Session clfySession = null;
 
 	//Session variables variables
-	protected static String ticketAMS = BaseAIF.createToken();
+	protected static String ticketAMS;
 	protected static String profileID;
 	
 	protected static ApplicationContext appContext = new ApplicationContext();
 	protected static OrderingContext orderingContext = new OrderingContext();
 	protected static MaskInfo maskInfo = new MaskInfo();
+
+	// Properties from .properties file
+	static final String sNombreFich = "baseaif.properties";
+	static final String sRutaIni = "res/";
+	private static HashMap<String, String> prop = new HashMap<String, String>();
 	
-	
+
 	/**
 	 * Main function
 	 * @param args
@@ -87,30 +98,36 @@ public class BaseAIF {
 
 		try {
 			
-			System.out.println(System.getProperty("java.class.path"));
+//			clfyApp = new Application(true);
+//			clfyApp.initialize();
+//			System.out.println("Application generated OK");			
+//			//System.out.println("Directorio .env: " + clfyApp.getModuleDir());
+//			
+//			if (Boolean.getBoolean("AsmLogin")) 
+//				System.out.println("Asm login enabled");
+//			
+//			clfySession = clfyApp.getGlobalSession();
+//			System.out.println("Session generated OK");
+//
+//			clfySession.establishOnCurrentThread();
+//			System.out.println("Session established OK");
+//			
+//			//System.out.println(clfySession.getApp().getEnvConfigItem("Predef_User_Name", ""));
+//			//System.out.println(clfySession.getApp().getEnvConfigItem("Predef_User_Password", ""));
+//			//clfySession.login("CHISEC4", "CHISEC4");
+//			clfySession.predefinedLogin();
+//			
+//			System.out.println("login ok");
 			
-			clfyApp = new Application(true);
-			clfyApp.initialize();
-			System.out.println("Application generated OK");			
-			System.out.println("Directorio .env: " + clfyApp.getModuleDir());
+			BaseAIF.ticketAMS = createToken();
 			
-			if (Boolean.getBoolean("AsmLogin")) 
-				System.out.println("Asm login enabled");
+			if ("".equals(BaseAIF.ticketAMS)) {
+				System.out.println("ERROR generating ASM ticket ");
+				System.exit(0);
+			}
 			
-			clfySession = clfyApp.getGlobalSession();
-			System.out.println("Session generated OK");
-
-			clfySession.establishOnCurrentThread();
-			System.out.println("Session established OK");
-			
-			//System.out.println(clfySession.getApp().getEnvConfigItem("Predef_User_Name", ""));
-			//System.out.println(clfySession.getApp().getEnvConfigItem("Predef_User_Password", ""));
-			//clfySession.login("CHISEC4", "CHISEC4");
-			clfySession.predefinedLogin();
-			System.out.println("login ok");
-			
-			//UamsHelper.setTicketOnSession(clfySession, ticketAMS, null);
-			//System.out.println("Setting ticket " + ticketAMS + " ok");
+			UamsHelper.setTicketOnSession(clfySession, ticketAMS, null);
+			System.out.println("Setting ticket " + ticketAMS + " ok");
 
 			// Initialize static properties
 			BaseAIF.setInputAppContext();
@@ -219,10 +236,57 @@ public class BaseAIF {
 	 */
 	private static String createToken()
 	{
-		// return a token that can uniquely identify this session
-		return "neoris" + String.valueOf( (new Random()).nextInt( 999999 ) );
+		String ticket = "";
+		
+		// Get from .properties file the parameters to call the login webservice
+		try {
+			getWSProp();
+
+			//Defining the WS configuration
+			LoginServicesLocator loginServices = new LoginServicesLocator(prop.get("ADDRESS") + "?wsdl", new QName(prop.get("NAMESPACE"), prop.get("WSDD_SERVICE_NAME")));
+			loginServices.setLoginServicesEndpointAddress(prop.get("ADDRESS"));
+			loginServices.setEndpointAddress(prop.get("LOCAL_PART"), prop.get("ADDRESS") );
+			loginServices.setWSDDServiceName(prop.get("LOCAL_PART"));
+			
+			//Calling the WS
+			LoginServicesBindingStub remote = (LoginServicesBindingStub) loginServices.getLoginServices();
+			remote.setnameSpace(prop.get("NAMESPACE"));
+			remote.setPortName(new QName(prop.get("NAMESPACE"), prop.get("WSDD_SERVICE_NAME")));
+			
+			ticket = remote.login(prop.get("USER"), prop.get("PASSWORD"), prop.get("APPID"), prop.get("ENV"));
+
+		}catch(Exception e){
+			System.out.println("Error executing createToken " + e.toString());
+		}
+		
+		return ticket;
+		
 	}
 
+	
+	
+	/**
+	 * Get the configuration for call WS Login
+	 */
+	
+	private static void getWSProp() throws IOException, Exception{
+
+		try {
+			Properties properties = BaseAIF.getProperties(sRutaIni, sNombreFich);
+			
+			prop.put("ADDRESS", properties.getProperty("ADDRESS"));
+			prop.put("WSDD_SERVICE_NAME", properties.getProperty("WSDD_SERVICE_NAME"));
+			prop.put("NAMESPACE", properties.getProperty("NAMESPACE"));
+			prop.put("LOCAL_PART", properties.getProperty("LOCAL_PART"));		
+			prop.put("USER", properties.getProperty("USER"));
+			prop.put("PASSWORD", properties.getProperty("PASSWORD"));
+			prop.put("ENV", properties.getProperty("ENV"));
+		}catch(Exception e) {
+			System.out.println("Error getting " + sNombreFich + ": " + e.getLocalizedMessage());
+			throw new Exception("Error reading .properties file");
+			
+		}
+	}
 	
 
 	/**
@@ -413,14 +477,14 @@ public class BaseAIF {
 	 * @return ApplicationContext
 	 */
 	private static void setInputAppContext() {
-		/*
 		try {
 			Locale locale = BaseAIF.clfySession.getLocale();
 			
-			if (locale != null)
-				BaseAIF.appContext.setFormatLocale(locale);
+//			if (locale != null)
+//				BaseAIF.appContext.setFormatLocale(locale);
+			
+
 		}catch(Exception e) {}
-		*/
 		
 	}
 	
@@ -435,6 +499,8 @@ public class BaseAIF {
 			
 			if (locale != null)
 				BaseAIF.orderingContext.setLocale(locale);
+			
+			BaseAIF.orderingContext.setSecurityToken(BaseAIF.ticketAMS); 
 		}catch(Exception e) {}
 
 	}
@@ -447,6 +513,13 @@ public class BaseAIF {
 		BaseAIF.maskInfo.setMaskPropertyPathList(null);
 	}
 	
+	public HashMap<String, String> getProp() {
+		return prop;
+	}
+
+	public void setProp(HashMap<String, String> prop) {
+		this.prop = prop;
+	}
 
 	
 }

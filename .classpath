@@ -23,6 +23,18 @@
 	<classpathentry kind="lib" path="C:/Users/Neoris/Documents/workspace/LanzaProceso_v32bits/lib/xercesImpl.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Neoris/Documents/workspace/LanzaProceso_v32bits/lib/xml-apis.jar"/>
 	<classpathentry kind="lib" path="lib/AmdocsSecurityManager.jar"/>
+	<classpathentry kind="lib" path="/GenerarClasesWS/lib/jaxrpc.jar"/>
+	<classpathentry kind="lib" path="lib/commons-codec.jar"/>
+	<classpathentry kind="lib" path="lib/commons-discovery-0.2.jar"/>
+	<classpathentry kind="lib" path="lib/commons-fileupload.jar"/>
+	<classpathentry kind="lib" path="lib/commons-httpclient.jar"/>
+	<classpathentry kind="lib" path="lib/commons-io.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="lib/axis.jar"/>
+	<classpathentry kind="lib" path="lib/jaxrpc.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.8.jar"/>
+	<classpathentry kind="lib" path="lib/saaj.jar"/>
+	<classpathentry kind="lib" path="lib/wsdl4j-1.5.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 	<referencedentry kind="lib" path="C:/Users/Neoris/Documents/workspace/LanzaProceso_v32bits/lib/AmdocsSecurityManager.jar" sourcepath="/AmdocsSecurityManager"/>
 </classpath>
