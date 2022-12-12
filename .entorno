@@ -120,7 +120,7 @@ CLASSPATH=${CLASSPATH}":/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/C
 CLASSPATH=${CLASSPATH}":/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/CRMDeployment/ClfyAgent/ClfyAgent.war/WEB-INF/lib/jaxrpc.jar"
 CLASSPATH=${CLASSPATH}":/amxusers2/test/crm/chicrm4/JEE/CRMProduct/application/CRMDeployment/ClfyAgent/ClfyAgent.war/WEB-INF/lib/saaj.jar";export CLASSPATH
 
-echo ${CLASSPATH}
+#echo ${CLASSPATH}
 
 #-------------------------------
 # PATH

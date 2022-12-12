@@ -4,28 +4,20 @@ package es.neoris.operations;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Random;
-import java.util.UUID;
 
 import javax.ejb.EJBHome;
 import javax.naming.InitialContext;
 import javax.rmi.PortableRemoteObject;
 import javax.xml.namespace.QName;
-import javax.xml.ws.Service;
-
-import org.apache.axis.EngineConfiguration;
 
 import com.amdocs.cih.common.core.MaskInfo;
 import com.amdocs.cih.common.core.sn.ApplicationContext;
 import com.amdocs.cih.common.datatypes.OrderingContext;
+import com.amdocs.svcparams.IOmsServicesCreateOMSSessionResults;
 import com.amdocs.svcparams.IOmsServicesRetrieveOrderResults;
 import com.amdocs.svcparams.IOmsServicesStartOrderResults;
 import com.clarify.cbo.Application;
@@ -37,7 +29,6 @@ import es.neoris.operations.loginServices.LoginServicesLocator;
 import es.neoris.operations.oms.createSession.CreateSession;
 import es.neoris.operations.oms.launchOrder.LaunchOrder;
 import es.neoris.operations.oms.retrieveOrder.RetrieveOrder;
-
 
 /**
  * Execute an AIF service. Previously, always execute CreateSession AIF.
@@ -57,6 +48,7 @@ public class BaseAIF {
 	protected static ApplicationContext appContext = new ApplicationContext();
 	protected static OrderingContext orderingContext = new OrderingContext();
 	protected static MaskInfo maskInfo = new MaskInfo();
+	protected static Object s_PredefinedLoginLatch;
 
 	// Properties from .properties file
 	static final String sNombreFich = "baseaif.properties";
@@ -89,7 +81,7 @@ public class BaseAIF {
 		
 	}
 
-	
+
 	/**
 	 * Start services
 	 */
@@ -98,26 +90,23 @@ public class BaseAIF {
 
 		try {
 			
-//			clfyApp = new Application(true);
-//			clfyApp.initialize();
-//			System.out.println("Application generated OK");			
-//			//System.out.println("Directorio .env: " + clfyApp.getModuleDir());
-//			
-//			if (Boolean.getBoolean("AsmLogin")) 
-//				System.out.println("Asm login enabled");
-//			
-//			clfySession = clfyApp.getGlobalSession();
-//			System.out.println("Session generated OK");
-//
-//			clfySession.establishOnCurrentThread();
-//			System.out.println("Session established OK");
-//			
-//			//System.out.println(clfySession.getApp().getEnvConfigItem("Predef_User_Name", ""));
-//			//System.out.println(clfySession.getApp().getEnvConfigItem("Predef_User_Password", ""));
-//			//clfySession.login("CHISEC4", "CHISEC4");
-//			clfySession.predefinedLogin();
-//			
-//			System.out.println("login ok");
+			// Initialize remote services
+			clfyApp = new Application();
+			//System.out.println("Application generated OK");
+			clfyApp.initialize();
+			System.out.println("Application initialize OK");
+			
+			//String strModuleDir = clfyApp.getModuleDir();
+			//System.out.println("Ruta clarify.env: " + strModuleDir);
+			
+			if (Boolean.getBoolean("AsmLogin")) 
+				System.out.println("Asm login enabled");			
+			
+			clfySession = clfyApp.getGlobalSession();
+			System.out.println("global session ok");
+		
+			clfySession.establishOnCurrentThread();
+			System.out.println("Session established OK");
 			
 			BaseAIF.ticketAMS = createToken();
 			
@@ -125,7 +114,7 @@ public class BaseAIF {
 				System.out.println("ERROR generating ASM ticket ");
 				System.exit(0);
 			}
-			
+
 			UamsHelper.setTicketOnSession(clfySession, ticketAMS, null);
 			System.out.println("Setting ticket " + ticketAMS + " ok");
 
@@ -143,7 +132,12 @@ public class BaseAIF {
 		//New session through .properties values
 		CreateSession session = new CreateSession(true);		
 		try {
-						
+
+			IOmsServicesCreateOMSSessionResults m_output = new IOmsServicesCreateOMSSessionResults();
+			m_output = session.execProc();
+			//System.out.println("session.execProc ok " + m_output);
+
+			/*
 			profileID = session.execProc().getCreateOMSSessionResponse().getSecurityProfileID(); 
 			if (profileID == null) {
 				System.out.println("Error getting ticket AMS.");
@@ -151,7 +145,7 @@ public class BaseAIF {
 			}else{
 			    BaseAIF.orderingContext.setSecurityToken(profileID);  
 			}
-				
+			*/
  
 		}catch(Exception e) {
 			System.out.println("Error creating OMSSession.");
@@ -173,7 +167,7 @@ public class BaseAIF {
 					order.setM_orderId(args[1]); //Fill the orderID through the input param
 					
 					//Call the service to retrieve the Order object
-					IOmsServicesRetrieveOrderResults outOrder =order.execProc(); 
+					IOmsServicesRetrieveOrderResults outOrder = order.execProc(); 
 					
 					String orderID = outOrder.getRetrieveOrderOutput().getOrder(0).getOrderID().getOrderID();					
 					if (orderID == null) {
@@ -183,7 +177,22 @@ public class BaseAIF {
 					
 					//LaunchOrder service					
 					LaunchOrder process = new LaunchOrder(true);
-					process.setM_order(outOrder.getRetrieveOrderOutput().getOrder(0));
+					if (outOrder.getRetrieveOrderOutput().getOrder(0) != null) {
+						process.setM_order(outOrder.getRetrieveOrderOutput().getOrder(0));
+						process.setStrIDContract(args[1]);
+						process.setStrProcessName(args[2]);
+						process.setStrVersion(args[3]);
+
+						
+					}else{
+						System.out.println("Error retrieving order info");
+						throw new Exception("Error retrieving order info");
+					}
+					
+					if (process.getM_order() == null) {
+						System.out.println("(2) Error getting order info" + orderID);
+						throw new Exception("(2) Error getting order info: " + orderID);
+					}
 					
 					IOmsServicesStartOrderResults output = process.execProc();
 					
@@ -349,16 +358,16 @@ public class BaseAIF {
 				propertiesCon.put(InitialContext.SECURITY_CREDENTIALS, connectionProp.get("WLS_PASS") == null ? "" : connectionProp.get("WLS_PASS"));
 			}
 
-			if (debug) {
-				System.out.println("Properties created: " + propertiesCon.toString());
-				
-			}
+			//if (debug) {
+			//	System.out.println("Properties created: " + propertiesCon.toString());
+			//}
 			
 			// Open a RMI connection to server
 			InitialContext context = new InitialContext(propertiesCon);
-
 			objref = context.lookup(JNDI);
+
 			EJBHome AIFservice = (EJBHome) PortableRemoteObject.narrow(objref, EJBHome.class);
+
 			return AIFservice;
 			
 			
@@ -374,102 +383,6 @@ public class BaseAIF {
 		
 	}
 
-	
-	/**
-	 * Open db connections
-	 * @param strService
-	 *   LAUNCHORDER  	-> open connection using OMS a PC users 
-	 *   ALL 			-> every defined connection
-	 * @param Credentials<String, String>
-	 * @return Map <String -> name, Connection -> dbConnection> 	    
-	 * @throws SQLException
-	 */
-	protected static Map<String, Connection> openDBConnection(String strService, HashMap<String, String> prop, Boolean debug) throws SQLException {
-
-		HashMap<String, Connection> connection = new HashMap<String, Connection>();
-		String ORACLE_DRIVER_CLFY = null;
-
-		if (debug) 
-			System.out.println("Entering openDBConnection with value : " + strService);
-
-		
-		if (!"".equals(strService) && ("LAUNCHORDER".equals(strService) || "ALL".equals(strService))) {
-
-			Connection oraConexionOMS = null;
-			Connection oraConexionPC = null;
-
-			//Open db connection using OMS user
-			try {
-				DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
-				ORACLE_DRIVER_CLFY = "jdbc:oracle:thin:@" + (String) prop.get("JDBC_DB") + ":" + (String) prop.get("JDBC_PORT") + ":" + (String) prop.get("DB_NAME");
-				oraConexionOMS = DriverManager.getConnection(ORACLE_DRIVER_CLFY, (String) prop.get("DB_USER_OMS"), (String) prop.get("DB_PASS_OMS"));
-
-				connection.put("OMS", oraConexionOMS);
-				if (debug) System.out.println("ORACLE OMS connection opened");
-
-
-			} catch (SQLException sqle) {
-				
-				if (debug) System.out.println("ERROR Opening Oracle OMS DB connection FAILED: " + sqle.toString());
-				throw new SQLException("Error opening Oracle db connection: " +  (String) prop.get("DB_NAME") + ":" + (String) prop.get("JDBC_PORT"));
-			}
-			
-
-			//Open db connection using PC user
-			try {
-				DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
-				ORACLE_DRIVER_CLFY = "jdbc:oracle:thin:@" + (String) prop.get("JDBC_DB") + ":" + (String) prop.get("JDBC_PORT") + ":" + (String) prop.get("DB_NAME");
-				oraConexionPC = DriverManager.getConnection(ORACLE_DRIVER_CLFY, (String) prop.get("DB_USER_PC"), (String) prop.get("DB_PASS_PC"));
-
-				connection.put("PC", oraConexionPC);
-				if (debug) System.out.println("ORACLE PC connection opened");
-				
-			} catch (SQLException sqle) {
-				
-				if (debug) System.out.println( "ERROR Opening Oracle PC DB connection FAILED: " + sqle.toString());
-				throw new SQLException("Error opening Oracle db connection: " +  (String) prop.get("DB_NAME") + ":" + (String) prop.get("JDBC_PORT"));
-			}
-			
-		}
-		
-		return connection;
-		
-	}	
-	
-	/**
-	 * Close every opened connection
-	 * @throws SQLException
-	 */
-	protected static void closeDBConnection(HashMap<String, Connection> connection, Boolean debug) throws SQLException {
-
-		if (debug) {
-			System.out.println( "Entering closeDBConnection");
-		}
-
-		//Try to close OMS a PC connection
-		if (connection.get("OMS") != null) { 
-			try {
-				
-				connection.get("OMS").close();
-			} catch (SQLException sqle) {
-				if (debug) System.out.println( "ERROR Closing Oracle OMS DB connection FAILED: " + sqle.toString());
-				throw new SQLException("Error closing OMS db connection");
-			}
-		}
-
-		if (connection.get("PC") != null) { 
-			try {
-				connection.get("PC").close();
-			} catch (SQLException sqle) {
-				if (debug) System.out.println( "ERROR Closing Oracle PC DB connection FAILED: " + sqle.toString());
-				throw new SQLException("Error closing PC db connection");
-			}
-			
-		}
-		
-		if (debug) System.out.println("Connections closed");
-
-	}
 		
 
 	/**
@@ -480,11 +393,13 @@ public class BaseAIF {
 		try {
 			Locale locale = BaseAIF.clfySession.getLocale();
 			
-//			if (locale != null)
-//				BaseAIF.appContext.setFormatLocale(locale);
+			if (locale != null)
+				BaseAIF.appContext.setFormatLocale(locale);
 			
 
-		}catch(Exception e) {}
+		}catch(Exception e) {
+			System.out.print("Error setting App Context");
+		}
 		
 	}
 	
@@ -493,16 +408,19 @@ public class BaseAIF {
 	 * @return ApplicationContext
 	 */
 	private static void setInputOrderingContext() {
+
+		BaseAIF.orderingContext.setSecurityToken(BaseAIF.ticketAMS); 
 		
 		try {
 			Locale locale = BaseAIF.clfySession.getLocale();
-			
+
 			if (locale != null)
 				BaseAIF.orderingContext.setLocale(locale);
 			
-			BaseAIF.orderingContext.setSecurityToken(BaseAIF.ticketAMS); 
-		}catch(Exception e) {}
-
+		}catch(Exception e) {
+			System.out.print("Error setting Ordering Context");
+		}
+		
 	}
 		
 	/**

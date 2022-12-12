@@ -1,0 +1,12 @@
+Categories=rO0ABXVyABNbTGphdmEubGFuZy5TdHJpbmc7rdJW5+kde0cCAAB4cAAAAAA\=
+ConfigFile=
+CustomizationLevel=0
+GenBusIntf=false
+GenCode=false
+GenParamBlocks=false
+IsMethod=false
+NodePath=/
+OutputPath=
+ValidTypes=char;char;long;long;float;float;short;short;int;int;Date;java.util.Date;String;java.lang.String;double;double;boolean;boolean;byte;byte;
+Verification=true
+eclipse.preferences.version=1
