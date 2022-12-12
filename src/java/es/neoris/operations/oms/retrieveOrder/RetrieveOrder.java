@@ -8,10 +8,12 @@ import com.amdocs.cih.services.oms.interfaces.IOmsServicesRemoteHome;
 import com.amdocs.cih.services.order.lib.OrderID;
 import com.amdocs.cih.services.order.lib.OrderRef;
 import com.amdocs.cih.services.order.lib.RetrieveOrderInput;
+import com.amdocs.cih.services.order.lib.RetrieveOrderOutput;
 import com.amdocs.svcparams.IOmsServicesRetrieveOrderInputs;
 import com.amdocs.svcparams.IOmsServicesRetrieveOrderResults;
 
 import es.neoris.operations.BaseAIF;
+import es.neoris.operations.oms.launchOrder.LaunchOrder;
 
 
 
@@ -86,16 +88,19 @@ extends es.neoris.operations.BaseAIF
 	 * @return 0 -> OK
 	 *        -1 -> Error connecting
 	 */
-	public IOmsServicesRetrieveOrderResults execProc() {
+	public IOmsServicesRetrieveOrderResults execProc() 
+		throws Exception {
 		
 		m_input = new IOmsServicesRetrieveOrderInputs();
 		m_output = new IOmsServicesRetrieveOrderResults();
 		
-		if (RetrieveOrder.debugMode) {
-			System.out.println("Entering execProcess");			
-		}
 		
 		try {
+
+			if (RetrieveOrder.debugMode) {
+				System.out.println("Entering execProcess [" + this.getClass().getSimpleName() + "]");				
+			}
+			
 			
 			//Open WL connection through RMI
 			service = ((IOmsServicesRemoteHome) BaseAIF.createEJBObject(connectionProp, JNDI, RetrieveOrder.debugMode)).create();
@@ -107,14 +112,24 @@ extends es.neoris.operations.BaseAIF
 	  		m_input.setRetrieveOrderInput(getInputRetrieveOrder(m_orderId));
 
 			//Call the AIF service
-	  		m_output.setRetrieveOrderOutput(service.retrieveOrder(m_input.getApplicationContext(), m_input.getOrderingContext(), m_input.getRetrieveOrderInput(), m_input.getMaskInfo()));
+	  		RetrieveOrderOutput response = service.retrieveOrder(m_input.getApplicationContext(), m_input.getOrderingContext(), m_input.getRetrieveOrderInput(), m_input.getMaskInfo());
+	  		
+			if (RetrieveOrder.debugMode) {
+				if (response != null) {
+					System.out.println("Order=" + response.getOrder(0).getOrderID().getOrderID());
+				}
+			}
+			
+	  		m_output.setRetrieveOrderOutput(response);
 	  		return m_output;
 	  		
 		}catch(Exception e) {
 			if (RetrieveOrder.debugMode) {
 				System.out.println("ERROR calling AIF service." + e.toString());				
 			}
-			return m_output;
+			
+			throw new Exception("ERROR getting EPISession " + e.toString());
+			
 			
 		}
 		
@@ -126,6 +141,8 @@ extends es.neoris.operations.BaseAIF
 	 * @return RetrieveOrderInput
 	 */
 	private RetrieveOrderInput getInputRetrieveOrder(String p_OrderID) {
+		
+		//System.out.println("Entering getInputRetrieveOrder with value " + p_OrderID);
 		RetrieveOrderInput order = new RetrieveOrderInput();
 		OrderRef orderRef = new OrderRef();
 		
@@ -143,6 +160,7 @@ extends es.neoris.operations.BaseAIF
 		//Fill the RetrieveOrderInput. Only index = 0
 		order.setOrderRef(arrOrderRef);
 		
+		//System.out.println("Exiting getInputRetrieveOrder");
 		
 		return order;
 	}

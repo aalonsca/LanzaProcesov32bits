@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src/java"/>
 	<classpathentry kind="src" path="res"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_24"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="C:/Users/Neoris/Documents/workspace/LanzaProceso_v32bits/lib/acfglib.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Neoris/Documents/workspace/LanzaProceso_v32bits/lib/AmdocsAif.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Neoris/Documents/workspace/LanzaProceso_v32bits/lib/AmdocsCihDatatypes.jar"/>
@@ -23,7 +23,6 @@
 	<classpathentry kind="lib" path="C:/Users/Neoris/Documents/workspace/LanzaProceso_v32bits/lib/xercesImpl.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Neoris/Documents/workspace/LanzaProceso_v32bits/lib/xml-apis.jar"/>
 	<classpathentry kind="lib" path="lib/AmdocsSecurityManager.jar"/>
-	<classpathentry kind="lib" path="/GenerarClasesWS/lib/jaxrpc.jar"/>
 	<classpathentry kind="lib" path="lib/commons-codec.jar"/>
 	<classpathentry kind="lib" path="lib/commons-discovery-0.2.jar"/>
 	<classpathentry kind="lib" path="lib/commons-fileupload.jar"/>

@@ -6,10 +6,12 @@ import java.util.Properties;
 import com.amdocs.cih.services.oms.interfaces.IOmsServicesRemote;
 import com.amdocs.cih.services.oms.interfaces.IOmsServicesRemoteHome;
 import com.amdocs.cih.services.oms.lib.CreateOMSSessionRequest;
+import com.amdocs.cih.services.oms.lib.CreateOMSSessionResponse;
 import com.amdocs.svcparams.IOmsServicesCreateOMSSessionInputs;
 import com.amdocs.svcparams.IOmsServicesCreateOMSSessionResults;
 
 import es.neoris.operations.BaseAIF;
+import es.neoris.operations.oms.launchOrder.LaunchOrder;
 
 /** Create a new session for using others services.
  * @author Neoris
@@ -80,17 +82,18 @@ extends es.neoris.operations.BaseAIF
 	 * @return 0 -> OK
 	 *        -1 -> Error connecting
 	 */
-	public IOmsServicesCreateOMSSessionResults execProc() {
+	public IOmsServicesCreateOMSSessionResults execProc() 
+	throws Exception {
 		
 		m_input = new IOmsServicesCreateOMSSessionInputs();
 		m_output = new IOmsServicesCreateOMSSessionResults();
 
-		if (CreateSession.debugMode) {
-			System.out.println("Entering execProcess");			
-		}
-		
 
 		try {
+			
+			if (CreateSession.debugMode) {
+				System.out.println("Entering execProcess [" + this.getClass().getSimpleName() + "]");			
+			}
 
 			//Open WL connection through RMI
 			service =((IOmsServicesRemoteHome) BaseAIF.createEJBObject(connectionProp, JNDI, CreateSession.debugMode)).create();
@@ -106,9 +109,14 @@ extends es.neoris.operations.BaseAIF
 			m_input.setCreateOMSSessionRequest(getInputOMSSession());
 			
 			//Call the AIF service
-			m_output.setCreateOMSSessionResponse(service.createOMSSession(m_input.getApplicationContext(), m_input.getOrderingContext(), m_input.getCreateOMSSessionRequest(), m_input.getMaskInfo()));
-
-			
+			CreateOMSSessionResponse response = service.createOMSSession(m_input.getApplicationContext(), m_input.getOrderingContext(), m_input.getCreateOMSSessionRequest(), m_input.getMaskInfo());
+			/*
+			if (CreateSession.debugMode) {
+				System.out.println("Response.errorMessage= " + response.getErrorMessage());
+				System.out.println("Response.securityProfileID= " +response.getSecurityProfileID());
+			}
+			*/
+			m_output.setCreateOMSSessionResponse(response);
 			if (CreateSession.debugMode) {
 				System.out.println("Session created.");
 			}
@@ -120,7 +128,8 @@ extends es.neoris.operations.BaseAIF
 				System.out.println("ERROR getting EPISession. Exiting..." + e.toString());				
 			}
 			
-			return m_output;
+			throw new Exception("ERROR getting EPISession " + e.toString());
+			
 		}
 		
 		
@@ -133,8 +142,8 @@ extends es.neoris.operations.BaseAIF
 		CreateOMSSessionRequest sessionRequest = new CreateOMSSessionRequest();
 		
 		String ticket = BaseAIF.ticketAMS;
-		
-		sessionRequest.setLanguage(BaseAIF.clfySession.getLocale().getDisplayLanguage());
+
+	//	sessionRequest.setLanguage(BaseAIF.clfySession.getLocale().getDisplayLanguage());
 		sessionRequest.setAsmTicket(ticket);
 		
 		return sessionRequest;

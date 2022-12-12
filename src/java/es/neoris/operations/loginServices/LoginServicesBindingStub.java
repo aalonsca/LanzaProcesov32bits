@@ -1,5 +1,4 @@
 
-
 /**
  * LoginServicesBindingStub.java
  *
